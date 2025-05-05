@@ -9,37 +9,55 @@
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: #e5f0ff;
       color: #064273;
-      margin: 20px;
+      margin: 0;
+      height: 100%;
       user-select: text;
     }
     h1 {
       font-size: 1.8rem;
-      margin-bottom: 8px;
+      margin: 20px auto 8px;
       color: #064273;
       text-align: center;
     }
+    .description {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: calc(100vh - 120px); /* Adjust based on nav/header height */
+      padding: 20px;
+    }
     .container {
       width: 100%;
+      max-width: 600px;
       background: #ffffff;
       border-radius: 12px;
       box-shadow: 0 6px 15px rgba(0,0,0,0.1);
       overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      margin-bottom: 20px;
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: auto auto;
+      gap: 10px;
+      margin: 0 auto;
     }
     .diagram-container {
       position: relative;
       width: 100%;
       height: 450px;
-      overflow: visible;
+      overflow: hidden;
       touch-action: manipulation;
       background-color: #e5f0ff;
       border-bottom: 1px solid #ddd;
     }
     img.diagram {
-      width: 90%;
+      width: 100%;
       height: 450px;
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
       object-fit: contain;
       user-drag: none;
       user-select: none;
@@ -100,16 +118,15 @@
       max-width: 480px;
       background-color: #064273;
       border-radius: 8px;
-      margin-bottom: 15px;
+      margin: 20px auto 15px;
       user-select: none;
-      margin-left: auto;
-      margin-right: auto;
     }
     nav ul {
       list-style: none;
       display: flex;
       justify-content: space-around;
       padding: 10px 0;
+      margin: 0;
     }
     nav ul li a {
       color: #f9d71c;
@@ -143,21 +160,27 @@
   </nav>
   <h1>Urinary System Anatomy</h1>
   <p class="description">Click or tap on the highlighted points in the diagram to learn about parts of the urinary system.</p>
-  <div class="container" role="main" aria-label="Interactive urinary system anatomy diagram">
-    <div class="diagram-container">
-      <img class="diagram" src="/cubaanpertama/urinarysystem.jpg" alt="Anatomy diagram of the urinary system showing kidneys, ureters, bladder and urethra" />
-      <button class="hotspot" aria-label="Left Kidney" style="top: 25%; left: 28%;" data-part="leftKidney"></button>
-      <button class="hotspot" aria-label="Right Kidney" style="top: 26%; right: 28%;" data-part="rightKidney"></button>
-      <button class="hotspot" aria-label="Ureters" style="top: 50%; left: 36%;" data-part="ureters"></button>
-      <button class="hotspot" aria-label="Urinary Bladder" style="top: 65%; left: 47%;" data-part="bladder"></button>
-      <button class="hotspot" aria-label="Urethra" style="top: 79%; left: 48%;" data-part="urethra"></button>
-    </div>
-    <div class="info-box" tabindex="0" aria-live="polite" aria-atomic="true" aria-relevant="additions">
-      <button class="close-btn" aria-label="Close information panel" hidden>&times;</button>
-      <h2>Welcome</h2>
-      <p>Please click or tap on the red circles in the diagram to learn about each part of the urinary system anatomy.</p>
+
+  <div class="wrapper">
+    <div class="container" role="main" aria-label="Interactive urinary system anatomy diagram">
+      <div class="diagram-text-wrapper">
+        <div class="diagram-container">
+          <img class="diagram" src="/cubaanpertama/urinarysystem.jpg" alt="Anatomy diagram of the urinary system showing kidneys, ureters, bladder and urethra" />
+          <button class="hotspot" aria-label="Left Kidney" style="top: 25%; left: 28%;" data-part="leftKidney"></button>
+          <button class="hotspot" aria-label="Right Kidney" style="top: 26%; right: 28%;" data-part="rightKidney"></button>
+          <button class="hotspot" aria-label="Ureters" style="top: 50%; left: 36%;" data-part="ureters"></button>
+          <button class="hotspot" aria-label="Urinary Bladder" style="top: 65%; left: 47%;" data-part="bladder"></button>
+          <button class="hotspot" aria-label="Urethra" style="top: 79%; left: 48%;" data-part="urethra"></button>
+        </div>
+        <div class="info-box" tabindex="0" aria-live="polite" aria-atomic="true" aria-relevant="additions">
+          <button class="close-btn" aria-label="Close information panel" hidden>&times;</button>
+          <h2>Welcome</h2>
+          <p>Please click or tap on the red circles in the diagram to learn about each part of the urinary system anatomy.</p>
+        </div>
+      </div>
     </div>
   </div>
+
   <script>
     (() => {
       "use strict";
@@ -201,8 +224,6 @@
       const infoDescription = infoBox.querySelector('p');
       const closeBtn = infoBox.querySelector('.close-btn');
       const hotspots = container.querySelectorAll('.hotspot');
-      const listItems = [];
-
       let activePart = null;
 
       function clearActive() {
