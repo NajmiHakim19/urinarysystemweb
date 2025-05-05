@@ -366,22 +366,25 @@
     });
 
     // Case Study Game
-    const caseForm = document.getElementById('case-study-form');
-    const caseResult = caseForm.querySelector('.result');
-    caseForm.addEventListener('submit', e => {
-      e.preventDefault();
-      const formData = new FormData(caseForm);
-      const diagnosis = formData.get('diagnosis');
-      let message = '';
-      if (diagnosis === 'UTI') {
-        message = 'Correct! The symptoms indicate a Urinary Tract Infection.';
-      } else if (diagnosis === 'Kidney Stone') {
-        message = 'Not quite. The symptoms are more typical of a UTI.';
-      } else {
-        message = 'Please consult a healthcare professional for an accurate diagnosis.';
-      }
-      caseResult.textContent = message;
-    });
+  const caseForm = document.getElementById('case-study-form');
+  const caseResult = document.querySelector('.case-study .result');
+
+  caseForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const formData = new FormData(caseForm);
+    const diagnosis = formData.get('diagnosis');
+    let message = '';
+
+    if (diagnosis === 'UTI') {
+      message = '✅ Correct! The symptoms indicate a Urinary Tract Infection.';
+    } else if (diagnosis === 'Kidney Stone') {
+      message = '❌ Not quite. The symptoms are more typical of a UTI.';
+    } else {
+      message = '⚠️ Please consult a healthcare professional for an accurate diagnosis.';
+    }
+
+    caseResult.textContent = message;
+  });
   </script>
 </body>
 </html>

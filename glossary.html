@@ -9,7 +9,7 @@
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: #e5f0ff;
       color: #064273;
-      margin: 15px;
+      margin: 20px;
       user-select: text;
     }
     nav {
@@ -27,6 +27,7 @@
       display: flex;
       justify-content: space-around;
       padding: 10px 0;
+      margin: 0;
     }
     nav ul li a {
       color: #f9d71c;
@@ -43,6 +44,12 @@
       background-color: #f9d71c;
       color: #064273;
       outline: none;
+    }
+    .center-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 5px;
     }
     h2 {
       text-align: center;
@@ -65,6 +72,7 @@
     }
     .glossary-list {
       max-height: 400px;
+      width: 500px;
       overflow-y: auto;
       border: 1px solid #064273;
       border-radius: 8px;
@@ -102,26 +110,30 @@
       <li><a href="glossary.html">Glossary</a></li>
     </ul>
   </nav>
-  <h2>Glossary</h2>
-  <div class="glossary-search">
-    <input type="text" id="glossary-search-input" placeholder="Search terms..." aria-label="Search glossary terms" />
+
+  <div class="center-wrapper">
+    <h2>Glossary</h2>
+    <div class="glossary-search">
+      <input type="text" id="glossary-search-input" placeholder="Search terms..." aria-label="Search glossary terms" />
+    </div>
+    <div class="glossary-list" id="glossary-list" role="list" aria-live="polite" aria-atomic="true">
+      <div class="glossary-item" role="listitem" data-term="Nephron">
+        <h4>Nephron</h4>
+        <p>The functional unit of the kidney responsible for filtering blood and forming urine.</p>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Nephron_scheme_en.svg/320px-Nephron_scheme_en.svg.png" alt="Diagram of a nephron" />
+      </div>
+      <div class="glossary-item" role="listitem" data-term="Glomerulus">
+        <h4>Glomerulus</h4>
+        <p>A network of capillaries in the nephron where blood filtration begins.</p>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Glomerulus_diagram.svg/320px-Glomerulus_diagram.svg.png" alt="Diagram of glomerulus" />
+      </div>
+      <div class="glossary-item" role="listitem" data-term="ADH">
+        <h4>Antidiuretic Hormone (ADH)</h4>
+        <p>A hormone that helps regulate water balance by controlling urine concentration.</p>
+      </div>
+    </div>
   </div>
-  <div class="glossary-list" id="glossary-list" role="list" aria-live="polite" aria-atomic="true">
-    <div class="glossary-item" role="listitem" data-term="Nephron">
-      <h4>Nephron</h4>
-      <p>The functional unit of the kidney responsible for filtering blood and forming urine.</p>
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Nephron_scheme_en.svg/320px-Nephron_scheme_en.svg.png" alt="Diagram of a nephron" />
-    </div>
-    <div class="glossary-item" role="listitem" data-term="Glomerulus">
-      <h4>Glomerulus</h4>
-      <p>A network of capillaries in the nephron where blood filtration begins.</p>
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Glomerulus_diagram.svg/320px-Glomerulus_diagram.svg.png" alt="Diagram of glomerulus" />
-    </div>
-    <div class="glossary-item" role="listitem" data-term="ADH">
-      <h4>Antidiuretic Hormone (ADH)</h4>
-      <p>A hormone that helps regulate water balance by controlling urine concentration.</p>
-    </div>
-  </div>
+
   <script>
     const glossaryInput = document.getElementById('glossary-search-input');
     const glossaryList = document.getElementById('glossary-list');
@@ -131,11 +143,7 @@
       const query = glossaryInput.value.toLowerCase();
       glossaryItems.forEach(item => {
         const term = item.dataset.term.toLowerCase();
-        if (term.includes(query)) {
-          item.style.display = '';
-        } else {
-          item.style.display = 'none';
-        }
+        item.style.display = term.includes(query) ? '' : 'none';
       });
     });
   </script>
