@@ -1,0 +1,149 @@
+/* style.css */
+
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  background-color: #000;
+  color: white;
+}
+
+header {
+  position: relative;
+  height: 60vh;
+  background: radial-gradient(circle at center, #ff6900, #6a00ff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: left;
+  padding: 2rem;
+}
+
+header .content {
+  position: relative;
+  z-index: 1;
+}
+
+header h1 {
+  font-size: 3rem;
+  margin: 0;
+  font-weight: 700;
+  line-height: 1;
+}
+
+header p {
+  font-size: 1.2rem;
+  margin: 1rem 0;
+}
+
+.social-icons {
+  margin-top: 1rem;
+}
+
+.social-icons a {
+  margin-right: 1rem;
+  display: inline-block;
+}
+
+.social-icons img {
+  width: 24px;
+  height: 24px;
+  filter: invert(1);
+}
+
+main {
+  padding: 2rem;
+  text-align: center;
+  background-color: #000;
+}
+
+main h2 {
+  font-size: 1.8rem;
+  color: #fff;
+  margin-bottom: 2rem;
+  position: relative;
+  display: inline-block;
+}
+
+main h2::after {
+  content: "";
+  display: block;
+  width: 60%;
+  height: 4px;
+  background-color: orange;
+  margin: 0.5rem auto 0;
+}
+
+.video-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+.video-card {
+  background-color: #111;
+  border: 2px solid orange;
+  padding: 0.5rem;
+  width: 300px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.video-card:hover {
+  transform: scale(1.05);
+}
+
+.video-card img {
+  width: 100%;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.video-card p {
+  margin: 0;
+  font-size: 1rem;
+  color: #fff;
+  text-align: center;
+}
+
+.video-card[data-video]::after {
+  content: "▶";
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: orange;
+  color: black;
+  padding: 5px;
+  border-radius: 50%;
+  font-size: 14px;
+}
+
+/* Modal styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.modal-content {
+  margin: 10% auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+}
+
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+}

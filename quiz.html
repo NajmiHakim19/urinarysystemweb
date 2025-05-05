@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Quiz & Games - Urinary System Anatomy</title>
+  <style>
+    body, html {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #e5f0ff;
+      color: #064273;
+      margin: 20px;
+      user-select: text;
+    }
+    nav {
+      width: 100%;
+      max-width: 480px;
+      background-color: #064273;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      user-select: none;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: space-around;
+      padding: 10px 0;
+    }
+    nav ul li a {
+      color: #f9d71c;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 6px 10px;
+      display: block;
+      transition: background-color 0.3s ease;
+      border-radius: 6px;
+    }
+    nav ul li a:hover,
+    nav ul li a:focus {
+      background-color: #f9d71c;
+      color: #064273;
+      outline: none;
+    }
+    h2 {
+      text-align: center;
+      color: #064273;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+    .quiz-section {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 375px;
+      margin: auto;
+    }
+    /* Drag and Drop Labeling */
+    .drag-drop-container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .diagram-labels {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      margin-bottom: 10px;
+    }
+    .label-item {
+      background: #064273;
+      border-radius: 8px;
+      padding: 6px 12px;
+      cursor: grab;
+      user-select: none;
+      font-weight: 600;
+      color: #f9d71c;
+      transition: background-color 0.3s ease;
+    }
+    .label-item:active {
+      cursor: grabbing;
+    }
+    .drop-zone {
+      border: 2px dashed #064273;
+      border-radius: 8px;
+      padding: 12px;
+      min-height: 40px;
+      margin-bottom: 8px;
+      text-align: center;
+      font-weight: 600;
+      color: #064273;
+      user-select: none;
+      transition: background-color 0.3s ease;
+    }
+    .drop-zone.correct {
+      background-color: #a8d5a8;
+      border-color: #3a7d3a;
+      color: #2f4f2f;
+    }
+    .drop-zone.incorrect {
+      background-color: #f7a8a8;
+      border-color: #a33a3a;
+      color: #5f2f2f;
+    }
+    /* True or False Quiz */
+    .tf-quiz {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .tf-question {
+      background: #064273;
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-weight: 600;
+      color: #f9d71c;
+      user-select: text;
+    }
+    .tf-buttons {
+      display: flex;
+      gap: 10px;
+      margin-top: 6px;
+    }
+    .tf-buttons button {
+      flex: 1;
+      padding: 8px 0;
+      border: none;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      user-select: none;
+    }
+    .tf-buttons button:hover {
+      background-color: #f9d71c;
+      color: #064273;
+    }
+    .tf-buttons button.correct {
+      background-color: #3a7d3a;
+      color: #d4f1d4;
+      cursor: default;
+    }
+    .tf-buttons button.incorrect {
+      background-color: #a33a3a;
+      color: #f1d4d4;
+      cursor: default;
+    }
+    /* Case Study Game */
+    .case-study {
+      background: #064273;
+      border-radius: 8px;
+      padding: 12px;
+      font-size: 0.9rem;
+      color: #f9d71c;
+      user-select: text;
+    }
+    .case-study h3 {
+      margin-bottom: 8px;
+      font-weight: 700;
+      color: #f9d71c;
+    }
+    .case-study label {
+      display: block;
+      margin-bottom: 6px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .case-study input[type="radio"] {
+      margin-right: 8px;
+      cursor: pointer;
+    }
+    .case-study button {
+      margin-top: 10px;
+      padding: 8px 12px;
+      background-color: #f9d71c;
+      color: #064273;
+      border: none;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+      user-select: none;
+      transition: background-color 0.3s ease;
+    }
+    .case-study button:hover {
+      background-color: #e6c917;
+    }
+    .case-study .result {
+      margin-top: 10px;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <nav aria-label="Main navigation">
+    <ul>
+      <li><a href="trytest.html">Home</a></li>
+      <li><a href="diagram.html">Diagram</a></li>
+      <li><a href="journey.html">Journey</a></li>
+      <li><a href="quiz.html">Quiz</a></li>
+      <li><a href="disorders.html">Disorders</a></li>
+      <li><a href="tips.html">Tips</a></li>
+      <li><a href="glossary.html">Glossary</a></li>
+    </ul>
+  </nav>
+  <h2>Quiz &amp; Games</h2>
+  <div class="quiz-section">
+
+    <!-- Drag and Drop Labeling -->
+    <div class="drag-drop-container" aria-label="Label the organs drag and drop game">
+      <h3>Label the Organs</h3>
+      <div class="diagram-labels" aria-live="polite" aria-atomic="true" aria-relevant="additions">
+        <div class="label-item" draggable="true" id="label-leftKidney" tabindex="0">Left Kidney</div>
+        <div class="label-item" draggable="true" id="label-rightKidney" tabindex="0">Right Kidney</div>
+        <div class="label-item" draggable="true" id="label-ureters" tabindex="0">Ureters</div>
+        <div class="label-item" draggable="true" id="label-bladder" tabindex="0">Bladder</div>
+        <div class="label-item" draggable="true" id="label-urethra" tabindex="0">Urethra</div>
+      </div>
+      <div>
+        <div class="drop-zone" data-part="leftKidney" tabindex="0" aria-label="Drop zone for Left Kidney">Drop Left Kidney here</div>
+        <div class="drop-zone" data-part="rightKidney" tabindex="0" aria-label="Drop zone for Right Kidney">Drop Right Kidney here</div>
+        <div class="drop-zone" data-part="ureters" tabindex="0" aria-label="Drop zone for Ureters">Drop Ureters here</div>
+        <div class="drop-zone" data-part="bladder" tabindex="0" aria-label="Drop zone for Bladder">Drop Bladder here</div>
+        <div class="drop-zone" data-part="urethra" tabindex="0" aria-label="Drop zone for Urethra">Drop Urethra here</div>
+      </div>
+    </div>
+
+    <!-- True or False Quiz -->
+    <div class="tf-quiz" aria-label="True or False quiz about urinary system">
+      <h3>True or False</h3>
+      <div class="tf-question" data-answer="true" tabindex="0">The kidneys filter about 50 gallons of blood per day.</div>
+      <div class="tf-buttons">
+        <button type="button" aria-label="True" class="tf-btn" data-value="true">True</button>
+        <button type="button" aria-label="False" class="tf-btn" data-value="false">False</button>
+      </div>
+      <div class="tf-question" data-answer="false" tabindex="0">The urethra carries urine from the kidneys to the bladder.</div>
+      <div class="tf-buttons">
+        <button type="button" aria-label="True" class="tf-btn" data-value="true">True</button>
+        <button type="button" aria-label="False" class="tf-btn" data-value="false">False</button>
+      </div>
+    </div>
+
+    <!-- Case Study Game -->
+    <div class="case-study" aria-label="Case study game to diagnose urinary system conditions">
+      <h3>Case Study Game</h3>
+      <p><strong>Patient Symptoms:</strong> Frequent painful urination, cloudy urine, and lower abdominal pain.</p>
+      <form id="case-study-form">
+        <label><input type="radio" name="diagnosis" value="UTI" required /> Urinary Tract Infection (UTI)</label>
+        <label><input type="radio" name="diagnosis" value="Kidney Stone" /> Kidney Stone</label>
+        <label><input type="radio" name="diagnosis" value="Other" /> Other</label>
+        <button type="submit">Submit Diagnosis</button>
+      </form>
+      <div class="result" aria-live="polite" aria-atomic="true"></div>
+    </div>
+
+  </div>
+  <script>
+    // Drag and Drop Labeling Game
+    const labels = document.querySelectorAll('.label-item');
+    const dropZones = document.querySelectorAll('.drop-zone');
+
+    labels.forEach(label => {
+      label.addEventListener('dragstart', dragStart);
+      label.addEventListener('keydown', keyboardDragStart);
+    });
+
+    dropZones.forEach(zone => {
+      zone.addEventListener('dragover', dragOver);
+      zone.addEventListener('drop', drop);
+      zone.addEventListener('keydown', keyboardDrop);
+    });
+
+    let draggedLabel = null;
+
+    function dragStart(e) {
+      draggedLabel = e.target;
+      e.dataTransfer.setData('text/plain', e.target.id);
+      setTimeout(() => e.target.classList.add('hidden'), 0);
+    }
+
+    function dragOver(e) {
+      e.preventDefault();
+    }
+
+    function drop(e) {
+      e.preventDefault();
+      const labelId = e.dataTransfer.getData('text/plain');
+      const label = document.getElementById(labelId);
+      if (!label) return;
+
+      const part = e.currentTarget.dataset.part;
+      if (labelId.endsWith(part)) {
+        e.currentTarget.classList.add('correct');
+        e.currentTarget.classList.remove('incorrect');
+        label.setAttribute('draggable', 'false');
+        label.style.opacity = '0.6';
+        label.style.cursor = 'default';
+        e.currentTarget.textContent = label.textContent;
+        label.style.display = 'none';
+      } else {
+        e.currentTarget.classList.add('incorrect');
+        e.currentTarget.classList.remove('correct');
+        setTimeout(() => {
+          e.currentTarget.classList.remove('incorrect');
+        }, 1000);
+      }
+      draggedLabel.classList.remove('hidden');
+    }
+
+    // Keyboard accessible drag start
+    function keyboardDragStart(e) {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        draggedLabel = e.target;
+        e.target.classList.add('hidden');
+      }
+    }
+
+    // Keyboard accessible drop
+    function keyboardDrop(e) {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        if (!draggedLabel) return;
+        const part = e.currentTarget.dataset.part;
+        if (draggedLabel.id.endsWith(part)) {
+          e.currentTarget.classList.add('correct');
+          e.currentTarget.classList.remove('incorrect');
+          draggedLabel.setAttribute('draggable', 'false');
+          draggedLabel.style.opacity = '0.6';
+          draggedLabel.style.cursor = 'default';
+          e.currentTarget.textContent = draggedLabel.textContent;
+          draggedLabel.style.display = 'none';
+          draggedLabel.classList.remove('hidden');
+          draggedLabel = null;
+        } else {
+          e.currentTarget.classList.add('incorrect');
+          e.currentTarget.classList.remove('correct');
+          setTimeout(() => {
+            e.currentTarget.classList.remove('incorrect');
+          }, 1000);
+        }
+      }
+    }
+
+    // True or False Quiz
+    const tfButtons = document.querySelectorAll('.tf-btn');
+    tfButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const parent = button.closest('.tf-quiz');
+        const question = button.parentElement.previousElementSibling;
+        const correctAnswer = question.dataset.answer;
+        const userAnswer = button.dataset.value;
+        const buttons = button.parentElement.querySelectorAll('button');
+        buttons.forEach(btn => {
+          btn.disabled = true;
+          btn.classList.remove('correct', 'incorrect');
+        });
+        if (userAnswer === correctAnswer) {
+          button.classList.add('correct');
+        } else {
+          button.classList.add('incorrect');
+        }
+      });
+    });
+
+    // Case Study Game
+    const caseForm = document.getElementById('case-study-form');
+    const caseResult = caseForm.querySelector('.result');
+    caseForm.addEventListener('submit', e => {
+      e.preventDefault();
+      const formData = new FormData(caseForm);
+      const diagnosis = formData.get('diagnosis');
+      let message = '';
+      if (diagnosis === 'UTI') {
+        message = 'Correct! The symptoms indicate a Urinary Tract Infection.';
+      } else if (diagnosis === 'Kidney Stone') {
+        message = 'Not quite. The symptoms are more typical of a UTI.';
+      } else {
+        message = 'Please consult a healthcare professional for an accurate diagnosis.';
+      }
+      caseResult.textContent = message;
+    });
+  </script>
+</body>
+</html>

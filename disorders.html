@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Common Disorders - Urinary System Anatomy</title>
+  <style>
+    body, html {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #e5f0ff;
+      color: #064273;
+      margin: 20px;
+      user-select: text;
+    }
+    nav {
+      width: 100%;
+      max-width: 480px;
+      background-color: #064273;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      user-select: none;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: space-around;
+      padding: 10px 0;
+    }
+    nav ul li a {
+      color: #f9d71c;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 6px 10px;
+      display: block;
+      transition: background-color 0.3s ease;
+      border-radius: 6px;
+    }
+    nav ul li a:hover,
+    nav ul li a:focus {
+      background-color: #f9d71c;
+      color: #064273;
+      outline: none;
+    }
+    h2 {
+      text-align: center;
+      color: #064273;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+    .disorders-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-width: 375px;
+      margin: auto;
+    }
+    .disorder-card {
+      background: #ffffff;
+      border-radius: 8px;
+      padding: 12px;
+      cursor: default;
+      border: 2px solid transparent;
+      transition: border-color 0.3s ease, background-color 0.3s ease;
+      user-select: text;
+    }
+    .disorder-card:hover,
+    .disorder-card.active {
+      background-color: #064273;
+      color: #f9d71c;
+      border-color: #f9d71c;
+    }
+    .disorder-card h3 {
+      margin-bottom: 6px;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <nav aria-label="Main navigation">
+    <ul>
+      <li><a href="trytest.html">Home</a></li>
+      <li><a href="diagram.html">Diagram</a></li>
+      <li><a href="journey.html">Journey</a></li>
+      <li><a href="quiz.html">Quiz</a></li>
+      <li><a href="disorders.html">Disorders</a></li>
+      <li><a href="tips.html">Tips</a></li>
+      <li><a href="glossary.html">Glossary</a></li>
+    </ul>
+  </nav>
+  <h2>Common Disorders</h2>
+  <div class="disorders-cards" role="list">
+    <div class="disorder-card" tabindex="0" role="listitem" data-disorder="UTI">
+      <h3>Urinary Tract Infection (UTI)</h3>
+      <p><strong>Symptoms:</strong> Painful urination, frequent urge to urinate, cloudy urine.</p>
+      <p><strong>Causes:</strong> Bacterial infection, poor hygiene, urinary retention.</p>
+      <p><strong>Treatments:</strong> Antibiotics, increased hydration, proper hygiene.</p>
+    </div>
+    <div class="disorder-card" tabindex="0" role="listitem" data-disorder="Kidney Stones">
+      <h3>Kidney Stones</h3>
+      <p><strong>Symptoms:</strong> Severe pain in back or side, blood in urine, nausea.</p>
+      <p><strong>Causes:</strong> Dehydration, high salt intake, certain medical conditions.</p>
+      <p><strong>Treatments:</strong> Pain relievers, drinking water, medical procedures.</p>
+    </div>
+    <div class="disorder-card" tabindex="0" role="listitem" data-disorder="Chronic Kidney Disease">
+      <h3>Chronic Kidney Disease</h3>
+      <p><strong>Symptoms:</strong> Fatigue, swelling, changes in urination.</p>
+      <p><strong>Causes:</strong> Diabetes, high blood pressure, kidney damage.</p>
+      <p><strong>Treatments:</strong> Medication, lifestyle changes, dialysis.</p>
+    </div>
+    <div class="disorder-card" tabindex="0" role="listitem" data-disorder="Incontinence">
+      <h3>Incontinence</h3>
+      <p><strong>Symptoms:</strong> Involuntary urine leakage, frequent urination.</p>
+      <p><strong>Causes:</strong> Weak pelvic muscles, nerve damage, infections.</p>
+      <p><strong>Treatments:</strong> Exercises, medication, surgery.</p>
+    </div>
+  </div>
+</body>
+</html>

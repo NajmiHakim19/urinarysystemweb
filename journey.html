@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Urine Formation Journey - Urinary System Anatomy</title>
+  <style>
+    body, html {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #e5f0ff;
+      color: #064273;
+      margin: 20px;
+      user-select: text;
+    }
+    nav {
+      width: 100%;
+      max-width: 480px;
+      background-color: #064273;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      user-select: none;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: space-around;
+      padding: 10px 0;
+    }
+    nav ul li a {
+      color: #f9d71c;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 6px 10px;
+      display: block;
+      transition: background-color 0.3s ease;
+      border-radius: 6px;
+    }
+    nav ul li a:hover,
+    nav ul li a:focus {
+      background-color: #f9d71c;
+      color: #064273;
+      outline: none;
+    }
+    h2 {
+      text-align: center;
+      color: #064273;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+    .journey-steps {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 0.9rem;
+      max-width: 375px;
+      margin: auto;
+      user-select: text;
+    }
+    .journey-step {
+      flex: 1;
+      background: #ffffff;
+      border-radius: 8px;
+      padding: 10px 8px;
+      text-align: center;
+      position: relative;
+      cursor: default;
+      border: 2px solid transparent;
+      transition: border-color 0.3s ease, background-color 0.3s ease;
+    }
+    .journey-step:hover,
+    .journey-step.active {
+      background: #064273;
+      color: #f9d71c;
+      border-color: #f9d71c;
+    }
+    .journey-step::after {
+      content: "→";
+      position: absolute;
+      right: -15px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-weight: 700;
+      color: #064273;
+    }
+    .journey-step:last-child::after {
+      content: "";
+    }
+    .tooltip {
+      position: absolute;
+      bottom: 110%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #064273;
+      color: #f9d71c;
+      padding: 6px 10px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      z-index: 10;
+    }
+    .journey-step:hover .tooltip,
+    .journey-step.active .tooltip {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  </style>
+</head>
+<body>
+  <nav aria-label="Main navigation">
+    <ul>
+      <li><a href="trytest.html">Home</a></li>
+      <li><a href="diagram.html">Diagram</a></li>
+      <li><a href="journey.html">Journey</a></li>
+      <li><a href="quiz.html">Quiz</a></li>
+      <li><a href="disorders.html">Disorders</a></li>
+      <li><a href="tips.html">Tips</a></li>
+      <li><a href="glossary.html">Glossary</a></li>
+    </ul>
+  </nav>
+  <h2>Urine Formation Journey</h2>
+  <div class="journey-steps" role="list">
+    <div class="journey-step" tabindex="0" role="listitem" aria-describedby="tooltip-filtration">
+      Filtration
+      <div class="tooltip" id="tooltip-filtration" role="tooltip">Blood is filtered in the glomerulus to remove waste and excess substances.</div>
+    </div>
+    <div class="journey-step" tabindex="0" role="listitem" aria-describedby="tooltip-reabsorption">
+      Reabsorption
+      <div class="tooltip" id="tooltip-reabsorption" role="tooltip">Useful substances like glucose and water are reabsorbed back into the blood.</div>
+    </div>
+    <div class="journey-step" tabindex="0" role="listitem" aria-describedby="tooltip-secretion">
+      Secretion
+      <div class="tooltip" id="tooltip-secretion" role="tooltip">Additional waste substances are secreted into the tubules.</div>
+    </div>
+    <div class="journey-step" tabindex="0" role="listitem" aria-describedby="tooltip-excretion">
+      Excretion
+      <div class="tooltip" id="tooltip-excretion" role="tooltip">Final urine is excreted into the ureters and transported to the bladder.</div>
+    </div>
+  </div>
+</body>
+</html>

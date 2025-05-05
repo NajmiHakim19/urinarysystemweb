@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Interactive Diagram - Urinary System Anatomy</title>
+  <style>
+    body, html {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f0f8ff;
+      color: #222;
+      margin: 20px;
+      user-select: none;
+      max-width: 375px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 8px;
+      color: #064273;
+      text-align: center;
+    }
+    .container {
+      width: 100%;
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 20px;
+    }
+    .diagram-container {
+      position: relative;
+      width: 100%;
+      height: 450px;
+      overflow: visible;
+      touch-action: manipulation;
+      background-color: #e5f0ff;
+      border-bottom: 1px solid #ddd;
+    }
+    img.diagram {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      user-drag: none;
+      user-select: none;
+      pointer-events: none;
+      filter: drop-shadow(0 2px 3px rgba(0,0,0,0.1));
+      border-radius: 0 0 12px 12px;
+    }
+    .hotspot {
+      position: absolute;
+      background-color: rgba(255, 120, 120, 0.9);
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 2px solid #fff;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      box-shadow: 0 0 6px rgba(255, 120, 120, 0.8);
+    }
+    .hotspot:hover,
+    .hotspot.active {
+      background-color: #e63946;
+      box-shadow: 0 0 12px #e63946;
+      border-color: #ffb4b4;
+    }
+    .info-box {
+      background: #064273;
+      color: #fff;
+      padding: 15px;
+      font-size: 1rem;
+      line-height: 1.35;
+      border-radius: 0 0 12px 12px;
+      min-height: 160px;
+      transition: background-color 0.3s ease;
+      user-select: text;
+      position: relative;
+    }
+    .info-box h2 {
+      font-size: 1.3rem;
+      margin-bottom: 8px;
+      color: #f9d71c;
+      font-weight: 700;
+    }
+    .close-btn {
+      position: absolute;
+      top: 8px;
+      right: 10px;
+      background: transparent;
+      border: none;
+      color: #f9d71c;
+      font-weight: 700;
+      font-size: 1.3rem;
+      cursor: pointer;
+      padding: 0;
+      user-select: none;
+    }
+    nav {
+      width: 100%;
+      max-width: 480px;
+      background-color: #064273;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      user-select: none;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: space-around;
+      padding: 10px 0;
+    }
+    nav ul li a {
+      color: #f9d71c;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 6px 10px;
+      display: block;
+      transition: background-color 0.3s ease;
+      border-radius: 6px;
+    }
+    nav ul li a:hover,
+    nav ul li a:focus {
+      background-color: #f9d71c;
+      color: #064273;
+      outline: none;
+    }
+  </style>
+</head>
+<body>
+  <nav aria-label="Main navigation">
+    <ul>
+      <li><a href="trytest.html">Home</a></li>
+      <li><a href="diagram.html">Diagram</a></li>
+      <li><a href="journey.html">Journey</a></li>
+      <li><a href="quiz.html">Quiz</a></li>
+      <li><a href="disorders.html">Disorders</a></li>
+      <li><a href="tips.html">Tips</a></li>
+      <li><a href="glossary.html">Glossary</a></li>
+    </ul>
+  </nav>
+  <h1>Urinary System Anatomy</h1>
+  <p class="description">Click or tap on the highlighted points in the diagram to learn about parts of the urinary system.</p>
+  <div class="container" role="main" aria-label="Interactive urinary system anatomy diagram">
+    <div class="diagram-container">
+      <img class="diagram" src="/cubaanpertama/urinarysystem.jpg" alt="Anatomy diagram of the urinary system showing kidneys, ureters, bladder and urethra" />
+      <button class="hotspot" aria-label="Left Kidney" style="top: 25%; left: 28%;" data-part="leftKidney"></button>
+      <button class="hotspot" aria-label="Right Kidney" style="top: 26%; right: 28%;" data-part="rightKidney"></button>
+      <button class="hotspot" aria-label="Ureters" style="top: 50%; left: 36%;" data-part="ureters"></button>
+      <button class="hotspot" aria-label="Urinary Bladder" style="top: 65%; left: 47%;" data-part="bladder"></button>
+      <button class="hotspot" aria-label="Urethra" style="top: 79%; left: 48%;" data-part="urethra"></button>
+    </div>
+    <div class="info-box" tabindex="0" aria-live="polite" aria-atomic="true" aria-relevant="additions">
+      <button class="close-btn" aria-label="Close information panel" hidden>&times;</button>
+      <h2>Welcome</h2>
+      <p>Please click or tap on the red circles in the diagram to learn about each part of the urinary system anatomy.</p>
+    </div>
+  </div>
+  <script>
+    (() => {
+      "use strict";
+
+      const partsData = {
+        leftKidney: {
+          title: "Left Kidney",
+          description: "The left kidney is one of two bean-shaped organs that filter blood to remove waste products and form urine. It helps regulate blood pressure, electrolyte balance, and red blood cell production.",
+          disorders: "Common disorders include kidney stones and chronic kidney disease.",
+          funFact: "The kidney filters about 50 gallons of blood per day."
+        },
+        rightKidney: {
+          title: "Right Kidney",
+          description: "The right kidney performs the same vital functions as the left kidney, filtering waste products from the blood and balancing bodily fluids. It is slightly lower than the left to accommodate the liver.",
+          disorders: "Common disorders include kidney stones and chronic kidney disease.",
+          funFact: "The right kidney is slightly lower than the left due to the liver."
+        },
+        ureters: {
+          title: "Ureters",
+          description: "The ureters are muscular tubes that transport urine from the kidneys to the urinary bladder. They use peristaltic contractions to move urine smoothly.",
+          disorders: "Ureteral obstruction and infections can affect the ureters.",
+          funFact: "Ureters are about 10-12 inches long in adults."
+        },
+        bladder: {
+          title: "Urinary Bladder",
+          description: "The urinary bladder is a hollow muscular organ that stores urine until it is ready to be expelled from the body via urination.",
+          disorders: "Common disorders include urinary tract infections and incontinence.",
+          funFact: "The bladder can hold about 400-600 ml of urine."
+        },
+        urethra: {
+          title: "Urethra",
+          description: "The urethra is the tube that carries urine from the bladder to the outside of the body during urination.",
+          disorders: "Urethritis and strictures are common urethral disorders.",
+          funFact: "The female urethra is shorter than the male urethra."
+        }
+      };
+
+      const container = document.querySelector('.container');
+      const infoBox = container.querySelector('.info-box');
+      const infoTitle = infoBox.querySelector('h2');
+      const infoDescription = infoBox.querySelector('p');
+      const closeBtn = infoBox.querySelector('.close-btn');
+      const hotspots = container.querySelectorAll('.hotspot');
+      const listItems = [];
+
+      let activePart = null;
+
+      function clearActive() {
+        hotspots.forEach(hs => hs.classList.remove('active'));
+        closeBtn.hidden = true;
+        infoTitle.textContent = "Welcome";
+        infoDescription.innerHTML = "Please click or tap on the red circles in the diagram to learn about each part of the urinary system anatomy.";
+        activePart = null;
+      }
+
+      function activatePart(partKey) {
+        const partInfo = partsData[partKey];
+        if (!partInfo) return;
+
+        activePart = partKey;
+
+        infoTitle.textContent = partInfo.title;
+        infoDescription.innerHTML = `
+          <p>${partInfo.description}</p>
+          <p><strong>Common Disorders:</strong> ${partInfo.disorders}</p>
+          <p><em>Fun Fact:</em> ${partInfo.funFact}</p>
+        `;
+        closeBtn.hidden = false;
+
+        hotspots.forEach(hs => hs.classList.toggle('active', hs.dataset.part === partKey));
+
+        infoBox.focus();
+      }
+
+      hotspots.forEach(hotspot => {
+        hotspot.addEventListener('click', () => {
+          const part = hotspot.dataset.part;
+          if (part === activePart) {
+            clearActive();
+          } else {
+            activatePart(part);
+          }
+        });
+        hotspot.addEventListener('keypress', e => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            hotspot.click();
+          }
+        });
+      });
+
+      closeBtn.addEventListener('click', () => {
+        clearActive();
+      });
+
+      clearActive();
+    })();
+  </script>
+</body>
+</html>

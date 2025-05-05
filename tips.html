@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Daily Life Tips - Urinary System Anatomy</title>
+  <style>
+    body, html {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #e5f0ff;
+      color: #064273;
+      margin: 20px;
+      user-select: text;
+    }
+    nav {
+      width: 100%;
+      max-width: 375px;
+      background-color: #064273;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      user-select: none;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: space-evenly;
+      padding: 10px 0;
+    }
+    nav ul li a {
+      color: #f9d71c;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 6px 10px;
+      display: block;
+      transition: background-color 0.3s ease;
+      border-radius: 6px;
+    }
+    nav ul li a:hover,
+    nav ul li a:focus {
+      background-color: #f9d71c;
+      color: #064273;
+      outline: none;
+    }
+    h2 {
+      text-align: center;
+      color: #064273;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+    .daily-tips {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      max-width: 375px;
+      margin: auto;
+      user-select: text;
+    }
+    .hydration-quiz {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .hydration-quiz label {
+      font-weight: 600;
+      color: #064273;
+    }
+    .hydration-quiz input[type="number"] {
+      width: 100%;
+      padding: 8px;
+      border-radius: 8px;
+      border: 1px solid #064273;
+      font-size: 1rem;
+      color: #064273;
+    }
+    .hydration-quiz button {
+      padding: 8px 12px;
+      background-color: #064273;
+      color: #f9d71c;
+      border: none;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+      user-select: none;
+      transition: background-color 0.3s ease;
+    }
+    .hydration-quiz button:hover {
+      background-color: #e63946;
+    }
+    .hydration-result {
+      font-weight: 700;
+      color: #064273;
+      margin-top: 8px;
+    }
+    .diet-tips ul {
+      list-style-type: disc;
+      padding-left: 20px;
+      color: #064273;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <nav aria-label="Main navigation">
+    <ul>
+      <li><a href="trytest.html">Home</a></li>
+      <li><a href="diagram.html">Diagram</a></li>
+      <li><a href="journey.html">Journey</a></li>
+      <li><a href="quiz.html">Quiz</a></li>
+      <li><a href="disorders.html">Disorders</a></li>
+      <li><a href="tips.html">Tips</a></li>
+      <li><a href="glossary.html">Glossary</a></li>
+    </ul>
+  </nav>
+  <h2>Daily Life Tips</h2>
+  <div class="daily-tips">
+    <!-- Hydration Quiz -->
+    <div class="hydration-quiz" aria-label="Hydration quiz">
+      <label for="weight-input">Enter your weight (kg):</label>
+      <input type="number" id="weight-input" min="1" max="300" aria-describedby="hydration-result" />
+      <button id="hydration-btn" type="button">Calculate Water Intake</button>
+      <div id="hydration-result" class="hydration-result" aria-live="polite" aria-atomic="true"></div>
+    </div>
+
+    <!-- Diet Tips -->
+    <div class="diet-tips" aria-label="Diet tips for kidney health">
+      <h3>Diet Tips for Kidney Health</h3>
+      <ul>
+        <li>Drink plenty of water daily.</li>
+        <li>Limit salt and sodium intake.</li>
+        <li>Eat fresh fruits and vegetables.</li>
+        <li>Limit processed foods and sugars.</li>
+        <li>Maintain a healthy weight.</li>
+      </ul>
+    </div>
+  </div>
+  <script>
+    const hydrationBtn = document.getElementById('hydration-btn');
+    const weightInput = document.getElementById('weight-input');
+    const hydrationResult = document.getElementById('hydration-result');
+
+    hydrationBtn.addEventListener('click', () => {
+      const weight = parseFloat(weightInput.value);
+      if (isNaN(weight) || weight <= 0) {
+        hydrationResult.textContent = 'Please enter a valid weight.';
+        return;
+      }
+      // Simple hydration calculation: 35 ml per kg body weight
+      const waterIntake = (weight * 35) / 1000; // liters
+      hydrationResult.textContent = `You should drink approximately ${waterIntake.toFixed(2)} liters of water daily.`;
+    });
+  </script>
+</body>
+</html>

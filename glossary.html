@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Glossary - Urinary System Anatomy</title>
+  <style>
+    body, html {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #e5f0ff;
+      color: #064273;
+      margin: 15px;
+      user-select: text;
+    }
+    nav {
+      width: 100%;
+      max-width: 480px;
+      background-color: #064273;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      user-select: none;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: space-evenly;
+      padding: 10px 0;
+    }
+    nav ul li a {
+      color: #f9d71c;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 6px 10px;
+      display: block;
+      transition: background-color 0.3s ease;
+      border-radius: 6px;
+    }
+    nav ul li a:hover,
+    nav ul li a:focus {
+      background-color: #f9d71c;
+      color: #064273;
+      outline: none;
+    }
+    h2 {
+      text-align: center;
+      color: #064273;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+    .glossary-search {
+      margin-bottom: 10px;
+      text-align: center;
+    }
+    .glossary-search input {
+      width: 100%;
+      max-width: 375px;
+      padding: 8px;
+      border-radius: 8px;
+      border: 1px solid #064273;
+      font-size: 1rem;
+      color: #064273;
+    }
+    .glossary-list {
+      max-height: 400px;
+      overflow-y: auto;
+      border: 1px solid #064273;
+      border-radius: 8px;
+      padding: 8px;
+      background: #ffffff;
+    }
+    .glossary-item {
+      margin-bottom: 10px;
+    }
+    .glossary-item h4 {
+      margin-bottom: 4px;
+      font-weight: 700;
+      color: #064273;
+    }
+    .glossary-item p {
+      font-size: 0.9rem;
+      color: #222;
+    }
+    .glossary-item img {
+      max-width: 100%;
+      border-radius: 8px;
+      margin-top: 4px;
+    }
+  </style>
+</head>
+<body>
+  <nav aria-label="Main navigation">
+    <ul>
+      <li><a href="trytest.html">Home</a></li>
+      <li><a href="diagram.html">Diagram</a></li>
+      <li><a href="journey.html">Journey</a></li>
+      <li><a href="quiz.html">Quiz</a></li>
+      <li><a href="disorders.html">Disorders</a></li>
+      <li><a href="tips.html">Tips</a></li>
+      <li><a href="glossary.html">Glossary</a></li>
+    </ul>
+  </nav>
+  <h2>Glossary</h2>
+  <div class="glossary-search">
+    <input type="text" id="glossary-search-input" placeholder="Search terms..." aria-label="Search glossary terms" />
+  </div>
+  <div class="glossary-list" id="glossary-list" role="list" aria-live="polite" aria-atomic="true">
+    <div class="glossary-item" role="listitem" data-term="Nephron">
+      <h4>Nephron</h4>
+      <p>The functional unit of the kidney responsible for filtering blood and forming urine.</p>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Nephron_scheme_en.svg/320px-Nephron_scheme_en.svg.png" alt="Diagram of a nephron" />
+    </div>
+    <div class="glossary-item" role="listitem" data-term="Glomerulus">
+      <h4>Glomerulus</h4>
+      <p>A network of capillaries in the nephron where blood filtration begins.</p>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Glomerulus_diagram.svg/320px-Glomerulus_diagram.svg.png" alt="Diagram of glomerulus" />
+    </div>
+    <div class="glossary-item" role="listitem" data-term="ADH">
+      <h4>Antidiuretic Hormone (ADH)</h4>
+      <p>A hormone that helps regulate water balance by controlling urine concentration.</p>
+    </div>
+  </div>
+  <script>
+    const glossaryInput = document.getElementById('glossary-search-input');
+    const glossaryList = document.getElementById('glossary-list');
+    const glossaryItems = glossaryList.querySelectorAll('.glossary-item');
+
+    glossaryInput.addEventListener('input', () => {
+      const query = glossaryInput.value.toLowerCase();
+      glossaryItems.forEach(item => {
+        const term = item.dataset.term.toLowerCase();
+        if (term.includes(query)) {
+          item.style.display = '';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
