@@ -1,0 +1,1120 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Urinary System Explorer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f9ff;
+        }
+        
+        .organ {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .organ:hover {
+            filter: brightness(1.2);
+            transform: scale(1.05);
+        }
+        
+        .organ.active {
+            filter: brightness(1.3);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                filter: brightness(1.2);
+            }
+            50% {
+                filter: brightness(1.4);
+            }
+            100% {
+                filter: brightness(1.2);
+            }
+        }
+        
+        .info-card {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+        
+        .info-card.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .quiz-option {
+            transition: all 0.3s ease;
+        }
+        
+        .quiz-option:hover {
+            transform: translateY(-2px);
+        }
+        
+        .quiz-option.correct {
+            background-color: #c6f6d5;
+            border-color: #38a169;
+        }
+        
+        .quiz-option.incorrect {
+            background-color: #fed7d7;
+            border-color: #e53e3e;
+        }
+        
+        .tab {
+            transition: all 0.3s ease;
+        }
+        
+        .tab.active {
+            background-color: #3b82f6;
+            color: white;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .disease-card {
+            transition: all 0.3s ease;
+        }
+        
+        .disease-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        .highlight-point {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background-color: #3b82f6;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            cursor: pointer;
+            z-index: 10;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .highlight-point:hover {
+            transform: translate(-50%, -50%) scale(1.5);
+            background-color: #2563eb;
+        }
+        
+        .tooltip {
+            position: absolute;
+            background-color: #1e40af;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            z-index: 20;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            width: max-content;
+            max-width: 200px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        
+        .highlight-point:hover .tooltip {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="min-h-screen">
+        <!-- Header -->
+        <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-6">
+            <div class="container mx-auto px-4">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <h1 class="text-3xl font-bold mb-4 md:mb-0">Urinary System Explorer</h1>
+                    <nav>
+                        <ul class="flex space-x-6">
+                            <li><a href="#overview" class="hover:text-blue-200 transition">Overview</a></li>
+                            <li><a href="#interactive" class="hover:text-blue-200 transition">Interactive Model</a></li>
+                            <li><a href="#diseases" class="hover:text-blue-200 transition">Common Diseases</a></li>
+                            <li><a href="#quiz" class="hover:text-blue-200 transition">Quiz</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="bg-blue-50 py-16">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-4xl font-bold text-gray-800 mb-6">Explore the Urinary System</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+                    Discover how your body filters blood, removes waste, and maintains fluid balance through the amazing urinary system.
+                </p>
+                <a href="#interactive" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition duration-300 inline-block">
+                    Start Exploring
+                </a>
+            </div>
+        </section>
+
+        <!-- Overview Section -->
+        <section id="overview" class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Urinary System Overview</h2>
+                
+                <div class="flex flex-col lg:flex-row items-start gap-8">
+                    <div class="w-full lg:w-1/2">
+                        <div class="bg-blue-50 rounded-xl p-6 mb-6">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-4">What is the Urinary System?</h3>
+                            <p class="text-gray-600">
+                                The urinary system, also known as the renal system, is responsible for filtering blood, removing waste products, and maintaining fluid balance in the body. It plays a crucial role in homeostasis by regulating the composition and volume of blood.
+                            </p>
+                        </div>
+                        
+                        <div class="bg-blue-50 rounded-xl p-6">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-4">Key Functions</h3>
+                            <ul class="space-y-3 text-gray-600">
+                                <li class="flex items-start">
+                                    <svg class="h-6 w-6 text-blue-600 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span>Filtering blood to remove waste products and excess substances</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="h-6 w-6 text-blue-600 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span>Regulating water and electrolyte balance in the body</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="h-6 w-6 text-blue-600 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span>Eliminating waste products through urine</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="h-6 w-6 text-blue-600 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span>Regulating blood pressure through the renin-angiotensin system</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="h-6 w-6 text-blue-600 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span>Producing hormones that help regulate red blood cell production and calcium metabolism</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="w-full lg:w-1/2">
+                        <div class="bg-blue-50 rounded-xl p-6">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-4">Major Components</h3>
+                            
+                            <div class="space-y-6">
+                                <div class="flex items-start">
+                                    <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                                        <svg class="h-8 w-8 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-800 mb-1">Kidneys</h4>
+                                        <p class="text-gray-600 text-sm">Bean-shaped organs that filter blood and produce urine. Each kidney contains about 1 million nephrons, the functional units responsible for filtration.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                                        <svg class="h-8 w-8 text-yellow-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-800 mb-1">Ureters</h4>
+                                        <p class="text-gray-600 text-sm">Thin tubes that carry urine from the kidneys to the bladder. They use peristalsis (wave-like muscle contractions) to move urine downward.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                                        <svg class="h-8 w-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-800 mb-1">Bladder</h4>
+                                        <p class="text-gray-600 text-sm">A hollow, muscular organ that stores urine until it's ready to be expelled. It can expand to hold about 400-600 ml of urine.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                                        <svg class="h-8 w-8 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-800 mb-1">Urethra</h4>
+                                        <p class="text-gray-600 text-sm">A tube that carries urine from the bladder to the outside of the body. In males, it's longer (about 8 inches) and also serves as part of the reproductive system.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-12 bg-blue-50 rounded-xl p-6">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Did You Know?</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="bg-white p-4 rounded-lg shadow">
+                            <p class="text-gray-600">Your kidneys filter about 120-150 quarts of blood every day to produce 1-2 quarts of urine.</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow">
+                            <p class="text-gray-600">Each kidney contains about 1 million tiny filtering units called nephrons.</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow">
+                            <p class="text-gray-600">You can live a normal, healthy life with just one kidney.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Model Section -->
+        <section id="interactive" class="py-16 bg-blue-50">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Interactive Urinary System</h2>
+                
+                <div class="flex flex-col lg:flex-row items-start gap-8">
+                    <div class="w-full lg:w-1/2 bg-white p-8 rounded-xl shadow-lg relative">
+                        <div class="urinary-system-model relative mx-auto" style="width: 300px; height: 500px;">
+                            <!-- SVG Urinary System -->
+                            <svg width="300" height="500" viewBox="0 0 300 500">
+                                <!-- Torso outline -->
+                                <path d="M75,100 C75,80 125,50 150,50 C175,50 225,80 225,100 C225,120 225,350 200,400 C190,420 160,450 150,450 C140,450 110,420 100,400 C75,350 75,120 75,100 Z" fill="#f3f4f6" stroke="#d1d5db" stroke-width="2" />
+                                
+                                <!-- Left Kidney -->
+                                <path d="M110,180 C100,160 100,140 110,120 C120,100 140,100 150,120 C160,140 160,160 150,180 C140,200 120,200 110,180 Z" fill="#ef4444" stroke="#b91c1c" stroke-width="1.5" class="organ" id="left-kidney" />
+                                
+                                <!-- Right Kidney -->
+                                <path d="M190,180 C180,160 180,140 190,120 C200,100 220,100 230,120 C240,140 240,160 230,180 C220,200 200,200 190,180 Z" fill="#ef4444" stroke="#b91c1c" stroke-width="1.5" class="organ" id="right-kidney" />
+                                
+                                <!-- Left Ureter -->
+                                <path d="M130,170 C135,220 140,260 145,280" fill="none" stroke="#a855f7" stroke-width="3" class="organ" id="left-ureter" />
+                                
+                                <!-- Right Ureter -->
+                                <path d="M210,170 C205,220 200,260 195,280" fill="none" stroke="#a855f7" stroke-width="3" class="organ" id="right-ureter" />
+                                
+                                <!-- Bladder -->
+                                <ellipse cx="170" cy="300" rx="30" ry="25" fill="#3b82f6" stroke="#1d4ed8" stroke-width="1.5" class="organ" id="bladder" />
+                                
+                                <!-- Urethra -->
+                                <path d="M170,325 C170,350 170,370 170,390" fill="none" stroke="#8b5cf6" stroke-width="3" class="organ" id="urethra" />
+                                
+                                <!-- Highlight points -->
+                                <circle cx="130" cy="150" r="6" fill="#fbbf24" class="highlight-point" id="nephron-point">
+                                    <title>Nephron</title>
+                                </circle>
+                                
+                                <circle cx="170" cy="290" r="6" fill="#fbbf24" class="highlight-point" id="sphincter-point">
+                                    <title>Urethral Sphincter</title>
+                                </circle>
+                                
+                                <circle cx="140" cy="230" r="6" fill="#fbbf24" class="highlight-point" id="peristalsis-point">
+                                    <title>Peristalsis</title>
+                                </circle>
+                            </svg>
+                            
+                            <!-- Tooltips -->
+                            <div class="tooltip" style="left: 130px; top: 130px;" id="nephron-tooltip">
+                                Nephron: The functional unit of the kidney that filters blood and forms urine
+                            </div>
+                            
+                            <div class="tooltip" style="left: 170px; top: 270px;" id="sphincter-tooltip">
+                                Urethral Sphincter: Muscle that controls the release of urine from the bladder
+                            </div>
+                            
+                            <div class="tooltip" style="left: 140px; top: 210px;" id="peristalsis-tooltip">
+                                Peristalsis: Wave-like muscle contractions that move urine down the ureter
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 text-center">
+                            <p class="text-gray-600 text-sm">Click on any organ to learn more about it</p>
+                        </div>
+                    </div>
+                    
+                    <div class="w-full lg:w-1/2">
+                        <div class="bg-white p-8 rounded-xl shadow-lg h-full">
+                            <h3 id="organ-title" class="text-2xl font-bold text-gray-800 mb-4">Select an Organ</h3>
+                            <div id="organ-info" class="prose max-w-none">
+                                <p class="text-gray-600">Click on any part of the urinary system in the interactive model to learn more about its structure and function.</p>
+                            </div>
+                            
+                            <div class="mt-8">
+                                <div class="flex border-b">
+                                    <button class="tab active py-2 px-4 font-medium" data-tab="structure">Structure</button>
+                                    <button class="tab py-2 px-4 font-medium" data-tab="function">Function</button>
+                                    <button class="tab py-2 px-4 font-medium" data-tab="facts">Fun Facts</button>
+                                </div>
+                                
+                                <div class="py-4">
+                                    <div id="structure-content" class="tab-content active">
+                                        <p class="text-gray-600">Select an organ to view its structural details.</p>
+                                    </div>
+                                    
+                                    <div id="function-content" class="tab-content">
+                                        <p class="text-gray-600">Select an organ to learn about its function.</p>
+                                    </div>
+                                    
+                                    <div id="facts-content" class="tab-content">
+                                        <p class="text-gray-600">Select an organ to discover interesting facts about it.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-12 bg-white p-8 rounded-xl shadow-lg">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-6">The Urine Formation Process</h3>
+                    
+                    <div class="relative">
+                        <!-- Process Steps -->
+                        <div class="flex flex-col md:flex-row justify-between items-start mb-8 relative">
+                            <!-- Step 1 -->
+                            <div class="w-full md:w-1/3 p-4 relative z-10">
+                                <div class="bg-blue-50 p-4 rounded-lg h-full">
+                                    <div class="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center mb-4">1</div>
+                                    <h4 class="font-medium text-gray-800 mb-2">Filtration</h4>
+                                    <p class="text-gray-600 text-sm">Blood enters the nephron through the glomerulus, where water and small molecules are filtered out.</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Step 2 -->
+                            <div class="w-full md:w-1/3 p-4 relative z-10">
+                                <div class="bg-blue-50 p-4 rounded-lg h-full">
+                                    <div class="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center mb-4">2</div>
+                                    <h4 class="font-medium text-gray-800 mb-2">Reabsorption</h4>
+                                    <p class="text-gray-600 text-sm">Useful substances like glucose, amino acids, and some water are reabsorbed back into the bloodstream.</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Step 3 -->
+                            <div class="w-full md:w-1/3 p-4 relative z-10">
+                                <div class="bg-blue-50 p-4 rounded-lg h-full">
+                                    <div class="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center mb-4">3</div>
+                                    <h4 class="font-medium text-gray-800 mb-2">Secretion</h4>
+                                    <p class="text-gray-600 text-sm">Additional waste products are secreted from blood into the tubules to be excreted in urine.</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Connecting line -->
+                            <div class="absolute top-1/2 left-0 right-0 h-1 bg-blue-200 hidden md:block"></div>
+                        </div>
+                        
+                        <!-- Animation Button -->
+                        <div class="text-center mt-4">
+                            <button id="animate-process" class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-6 rounded-lg transition duration-300">
+                                Animate Process
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Common Diseases Section -->
+        <section id="diseases" class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Common Urinary System Diseases</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Urinary Tract Infection -->
+                    <div class="disease-card bg-gradient-to-br from-red-50 to-red-100 rounded-xl shadow-lg overflow-hidden">
+                        <div class="p-6">
+                            <div class="w-16 h-16 bg-red-200 rounded-full flex items-center justify-center mb-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Urinary Tract Infection (UTI)</h3>
+                            <p class="text-gray-600 mb-4">An infection in any part of the urinary system, most commonly in the bladder and urethra.</p>
+                            <div class="space-y-2 mb-4">
+                                <div class="flex items-start">
+                                    <svg class="h-5 w-5 text-red-600 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    <p class="text-sm text-gray-600">Symptoms: Burning sensation during urination, frequent urination, cloudy urine</p>
+                                </div>
+                                <div class="flex items-start">
+                                    <svg class="h-5 w-5 text-red-600 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                                    </svg>
+                                    <p class="text-sm text-gray-600">Treatment: Antibiotics, increased fluid intake</p>
+                                </div>
+                            </div>
+                            <button class="learn-more-disease bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded-lg text-sm transition duration-300" data-disease="uti">
+                                Learn More
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Kidney Stones -->
+                    <div class="disease-card bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-xl shadow-lg overflow-hidden">
+                        <div class="p-6">
+                            <div class="w-16 h-16 bg-yellow-200 rounded-full flex items-center justify-center mb-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-yellow-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Kidney Stones</h3>
+                            <p class="text-gray-600 mb-4">Hard deposits made of minerals and salts that form inside your kidneys.</p>
+                            <div class="space-y-2 mb-4">
+                                <div class="flex items-start">
+                                    <svg class="h-5 w-5 text-yellow-600 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    <p class="text-sm text-gray-600">Symptoms: Severe pain in side and back, pain during urination, pink/red/brown urine</p>
+                                </div>
+                                <div class="flex items-start">
+                                    <svg class="h-5 w-5 text-yellow-600 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                                    </svg>
+                                    <p class="text-sm text-gray-600">Treatment: Pain relievers, increased fluid intake, sound wave therapy (lithotripsy)</p>
+                                </div>
+                            </div>
+                            <button class="learn-more-disease bg-yellow-600 hover:bg-yellow-700 text-white py-2 px-4 rounded-lg text-sm transition duration-300" data-disease="kidney-stones">
+                                Learn More
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Chronic Kidney Disease -->
+                    <div class="disease-card bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl shadow-lg overflow-hidden">
+                        <div class="p-6">
+                            <div class="w-16 h-16 bg-blue-200 rounded-full flex items-center justify-center mb-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Chronic Kidney Disease</h3>
+                            <p class="text-gray-600 mb-4">A gradual loss of kidney function over time that can lead to kidney failure.</p>
+                            <div class="space-y-2 mb-4">
+                                <div class="flex items-start">
+                                    <svg class="h-5 w-5 text-blue-600 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    <p class="text-sm text-gray-600">Symptoms: Fatigue, high blood pressure, swelling in feet and ankles, changes in urination</p>
+                                </div>
+                                <div class="flex items-start">
+                                    <svg class="h-5 w-5 text-blue-600 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                                    </svg>
+                                    <p class="text-sm text-gray-600">Treatment: Medications, dietary changes, dialysis, kidney transplant</p>
+                                </div>
+                            </div>
+                            <button class="learn-more-disease bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg text-sm transition duration-300" data-disease="ckd">
+                                Learn More
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Overactive Bladder -->
+                    <div class="disease-card bg-gradient-to-br from-green-50 to-green-100 rounded-xl shadow-lg overflow-hidden">
+                        <div class="p-6">
+                            <div class="w-16 h-16 bg-green-200 rounded-full flex items-center justify-center mb-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Overactive Bladder</h3>
+                            <p class="text-gray-600 mb-4">A condition where the bladder contracts uncontrollably, creating an urgent need to urinate.</p>
+                            <div class="space-y-2 mb-4">
+                                <div class="flex items-start">
+                                    <svg class="h-5 w-5 text-green-600 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    <p class="text-sm text-gray-600">Symptoms: Sudden urge to urinate, frequent urination, waking up at night to urinate</p>
+                                </div>
+                                <div class="flex items-start">
+                                    <svg class="h-5 w-5 text-green-600 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                                    </svg>
+                                    <p class="text-sm text-gray-600">Treatment: Bladder training, pelvic floor exercises, medications</p>
+                                </div>
+                            </div>
+                            <button class="learn-more-disease bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-lg text-sm transition duration-300" data-disease="overactive-bladder">
+                                Learn More
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Urinary Incontinence -->
+                    <div class="disease-card bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl shadow-lg overflow-hidden">
+                        <div class="p-6">
+                            <div class="w-16 h-16 bg-purple-200 rounded-full flex items-center justify-center mb-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Urinary Incontinence</h3>
+                            <p class="text-gray-600 mb-4">Loss of bladder control resulting in the unintentional leakage of urine.</p>
+                            <div class="space-y-2 mb-4">
+                                <div class="flex items-start">
+                                    <svg class="h-5 w-5 text-purple-600 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    <p class="text-sm text-gray-600">Symptoms: Leaking urine when coughing or sneezing, strong urge to urinate, constant dribbling</p>
+                                </div>
+                                <div class="flex items-start">
+                                    <svg class="h-5 w-5 text-purple-600 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                                    </svg>
+                                    <p class="text-sm text-gray-600">Treatment: Pelvic floor exercises, bladder training, medications, surgery</p>
+                                </div>
+                            </div>
+                            <button class="learn-more-disease bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded-lg text-sm transition duration-300" data-disease="incontinence">
+                                Learn More
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Interstitial Cystitis -->
+                    <div class="disease-card bg-gradient-to-br from-pink-50 to-pink-100 rounded-xl shadow-lg overflow-hidden">
+                        <div class="p-6">
+                            <div class="w-16 h-16 bg-pink-200 rounded-full flex items-center justify-center mb-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-pink-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Interstitial Cystitis</h3>
+                            <p class="text-gray-600 mb-4">A chronic condition causing bladder pressure, bladder pain, and sometimes pelvic pain.</p>
+                            <div class="space-y-2 mb-4">
+                                <div class="flex items-start">
+                                    <svg class="h-5 w-5 text-pink-600 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    <p class="text-sm text-gray-600">Symptoms: Pelvic pain, pressure in the bladder, frequent urination, pain during intercourse</p>
+                                </div>
+                                <div class="flex items-start">
+                                    <svg class="h-5 w-5 text-pink-600 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                                    </svg>
+                                    <p class="text-sm text-gray-600">Treatment: Medications, physical therapy, bladder instillations, dietary changes</p>
+                                </div>
+                            </div>
+                            <button class="learn-more-disease bg-pink-600 hover:bg-pink-700 text-white py-2 px-4 rounded-lg text-sm transition duration-300" data-disease="interstitial-cystitis">
+                                Learn More
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Disease Modal -->
+                <div id="diseaseModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+                    <div class="bg-white rounded-xl max-w-3xl w-full mx-4 overflow-hidden">
+                        <div class="p-6">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 id="diseaseModalTitle" class="text-2xl font-bold text-gray-800"></h3>
+                                <button id="closeDiseaseModal" class="text-gray-500 hover:text-gray-700">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                    </svg>
+                                </button>
+                            </div>
+                            <div id="diseaseModalContent" class="prose max-w-none">
+                                <!-- Content will be inserted here -->
+                            </div>
+                            <div class="mt-6 flex justify-end">
+                                <button id="closeDiseaseModalBtn" class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-6 rounded-lg transition duration-300">
+                                    Close
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quiz Section -->
+        <section id="quiz" class="py-16 bg-blue-50">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center text-gray-800 mb-6">Test Your Knowledge</h2>
+                <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">Challenge yourself with these questions about the urinary system to see how much you've learned!</p>
+                
+                <div class="max-w-3xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
+                    <div class="p-8">
+                        <div id="quizContainer">
+                            <h3 id="questionText" class="text-xl font-semibold text-gray-800 mb-6">Loading question...</h3>
+                            
+                            <div id="options" class="space-y-4 mb-8">
+                                <!-- Options will be inserted here -->
+                            </div>
+                            
+                            <div id="feedback" class="p-4 rounded-lg mb-6 hidden">
+                                <!-- Feedback will be shown here -->
+                            </div>
+                            
+                            <div class="flex justify-between">
+                                <div>
+                                    <span id="questionNumber" class="text-sm text-gray-600">Question 1/5</span>
+                                </div>
+                                <button id="nextQuestion" class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-6 rounded-lg transition duration-300">
+                                    Next Question
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div id="quizResults" class="text-center hidden">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-4">Quiz Complete!</h3>
+                            <p class="text-xl mb-6">Your score: <span id="score" class="font-bold text-blue-600">0</span>/5</p>
+                            <button id="restartQuiz" class="bg-blue-600 hover:bg-blue-700 text-white py-3 px-8 rounded-lg transition duration-300">
+                                Take Quiz Again
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-gray-800 text-white py-12">
+            <div class="container mx-auto px-4">
+                <div class="flex flex-col md:flex-row justify-between">
+                    <div class="mb-8 md:mb-0">
+                        <h3 class="text-xl font-bold mb-4">Urinary System Explorer</h3>
+                        <p class="text-gray-400 max-w-md">An interactive educational tool to help you learn about the amazing urinary system and its vital role in maintaining health.</p>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#overview" class="text-gray-400 hover:text-white transition">Overview</a></li>
+                            <li><a href="#interactive" class="text-gray-400 hover:text-white transition">Interactive Model</a></li>
+                            <li><a href="#diseases" class="text-gray-400 hover:text-white transition">Common Diseases</a></li>
+                            <li><a href="#quiz" class="text-gray-400 hover:text-white transition">Knowledge Quiz</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                    <p>&copy; 2023 Urinary System Explorer. Created for educational purposes.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Organ information data
+        const organInfo = {
+            "left-kidney": {
+                title: "Kidney",
+                info: "The kidneys are bean-shaped organs that filter blood to produce urine. They remove waste and excess substances while maintaining proper fluid balance in the body.",
+                structure: `
+                    <p>Each kidney is about the size of a fist and weighs about 4-6 ounces. The kidneys have a complex internal structure:</p>
+                    <ul>
+                        <li><strong>Renal cortex:</strong> The outer layer where initial filtration occurs</li>
+                        <li><strong>Renal medulla:</strong> The inner region containing cone-shaped renal pyramids</li>
+                        <li><strong>Renal pelvis:</strong> A funnel-shaped structure that collects urine</li>
+                        <li><strong>Nephrons:</strong> Microscopic filtering units (about 1 million per kidney)</li>
+                        <li><strong>Blood vessels:</strong> Renal arteries bring blood in, renal veins take filtered blood out</li>
+                    </ul>
+                `,
+                function: `
+                    <p>The kidneys perform several vital functions:</p>
+                    <ul>
+                        <li>Filter about 120-150 quarts of blood daily to produce 1-2 quarts of urine</li>
+                        <li>Remove waste products, excess water, and toxins from the bloodstream</li>
+                        <li>Regulate electrolyte levels (sodium, potassium, calcium, etc.)</li>
+                        <li>Control blood pressure through the renin-angiotensin system</li>
+                        <li>Produce hormones like erythropoietin (stimulates red blood cell production)</li>
+                        <li>Activate vitamin D for calcium absorption</li>
+                    </ul>
+                `,
+                facts: `
+                    <ul>
+                        <li>You can live a normal, healthy life with just one kidney</li>
+                        <li>Kidneys filter all the blood in your body about 40 times every day</li>
+                        <li>Each kidney contains about 1 million tiny filtering units called nephrons</li>
+                        <li>The kidneys use about 20-25% of the heart's output of blood</li>
+                        <li>In a lifetime, kidneys filter more than 1 million gallons of blood</li>
+                    </ul>
+                `
+            },
+            "right-kidney": {
+                title: "Kidney",
+                info: "The kidneys are bean-shaped organs that filter blood to produce urine. They remove waste and excess substances while maintaining proper fluid balance in the body.",
+                structure: `
+                    <p>Each kidney is about the size of a fist and weighs about 4-6 ounces. The kidneys have a complex internal structure:</p>
+                    <ul>
+                        <li><strong>Renal cortex:</strong> The outer layer where initial filtration occurs</li>
+                        <li><strong>Renal medulla:</strong> The inner region containing cone-shaped renal pyramids</li>
+                        <li><strong>Renal pelvis:</strong> A funnel-shaped structure that collects urine</li>
+                        <li><strong>Nephrons:</strong> Microscopic filtering units (about 1 million per kidney)</li>
+                        <li><strong>Blood vessels:</strong> Renal arteries bring blood in, renal veins take filtered blood out</li>
+                    </ul>
+                `,
+                function: `
+                    <p>The kidneys perform several vital functions:</p>
+                    <ul>
+                        <li>Filter about 120-150 quarts of blood daily to produce 1-2 quarts of urine</li>
+                        <li>Remove waste products, excess water, and toxins from the bloodstream</li>
+                        <li>Regulate electrolyte levels (sodium, potassium, calcium, etc.)</li>
+                        <li>Control blood pressure through the renin-angiotensin system</li>
+                        <li>Produce hormones like erythropoietin (stimulates red blood cell production)</li>
+                        <li>Activate vitamin D for calcium absorption</li>
+                    </ul>
+                `,
+                facts: `
+                    <ul>
+                        <li>You can live a normal, healthy life with just one kidney</li>
+                        <li>Kidneys filter all the blood in your body about 40 times every day</li>
+                        <li>Each kidney contains about 1 million tiny filtering units called nephrons</li>
+                        <li>The kidneys use about 20-25% of the heart's output of blood</li>
+                        <li>In a lifetime, kidneys filter more than 1 million gallons of blood</li>
+                    </ul>
+                `
+            },
+            "left-ureter": {
+                title: "Ureter",
+                info: "The ureters are thin tubes that carry urine from the kidneys to the bladder. Each adult has two ureters, one connected to each kidney.",
+                structure: `
+                    <p>The ureters have the following structural characteristics:</p>
+                    <ul>
+                        <li>Narrow tubes about 8-10 inches (20-25 cm) long</li>
+                        <li>Diameter of about 3-4 mm (about the size of a spaghetti noodle)</li>
+                        <li>Three tissue layers:
+                            <ul>
+                                <li>Inner mucosa (transitional epithelium)</li>
+                                <li>Middle muscular layer (smooth muscle)</li>
+                                <li>Outer fibrous adventitia</li>
+                            </ul>
+                        </li>
+                        <li>Connect to the kidney at the renal pelvis</li>
+                        <li>Enter the bladder through the ureterovesical junction</li>
+                    </ul>
+                `,
+                function: `
+                    <p>The ureters perform these important functions:</p>
+                    <ul>
+                        <li>Transport urine from the kidneys to the bladder</li>
+                        <li>Use peristalsis (wave-like muscle contractions) to move urine downward</li>
+                        <li>Prevent backflow of urine toward the kidneys</li>
+                        <li>Help maintain the proper pressure in the urinary system</li>
+                    </ul>
+                    <p>Urine typically moves through the ureters at a rate of 1-5 ml per minute.</p>
+                `,
+                facts: `
+                    <ul>
+                        <li>Ureters contract about 1-5 times per minute to move urine</li>
+                        <li>The ureterovesical junction prevents urine from flowing back up to the kidneys</li>
+                        <li>Kidney stones can get stuck in the ureters, causing severe pain</li>
+                        <li>Some people are born with duplicate ureters (two ureters from one kidney)</li>
+                        <li>The ureters are not directly connected to the kidneys but to the renal pelvis</li>
+                    </ul>
+                `
+            },
+            "right-ureter": {
+                title: "Ureter",
+                info: "The ureters are thin tubes that carry urine from the kidneys to the bladder. Each adult has two ureters, one connected to each kidney.",
+                structure: `
+                    <p>The ureters have the following structural characteristics:</p>
+                    <ul>
+                        <li>Narrow tubes about 8-10 inches (20-25 cm) long</li>
+                        <li>Diameter of about 3-4 mm (about the size of a spaghetti noodle)</li>
+                        <li>Three tissue layers:
+                            <ul>
+                                <li>Inner mucosa (transitional epithelium)</li>
+                                <li>Middle muscular layer (smooth muscle)</li>
+                                <li>Outer fibrous adventitia</li>
+                            </ul>
+                        </li>
+                        <li>Connect to the kidney at the renal pelvis</li>
+                        <li>Enter the bladder through the ureterovesical junction</li>
+                    </ul>
+                `,
+                function: `
+                    <p>The ureters perform these important functions:</p>
+                    <ul>
+                        <li>Transport urine from the kidneys to the bladder</li>
+                        <li>Use peristalsis (wave-like muscle contractions) to move urine downward</li>
+                        <li>Prevent backflow of urine toward the kidneys</li>
+                        <li>Help maintain the proper pressure in the urinary system</li>
+                    </ul>
+                    <p>Urine typically moves through the ureters at a rate of 1-5 ml per minute.</p>
+                `,
+                facts: `
+                    <ul>
+                        <li>Ureters contract about 1-5 times per minute to move urine</li>
+                        <li>The ureterovesical junction prevents urine from flowing back up to the kidneys</li>
+                        <li>Kidney stones can get stuck in the ureters, causing severe pain</li>
+                        <li>Some people are born with duplicate ureters (two ureters from one kidney)</li>
+                        <li>The ureters are not directly connected to the kidneys but to the renal pelvis</li>
+                    </ul>
+                `
+            },
+            "bladder": {
+                title: "Bladder",
+                info: "The bladder is a hollow, muscular organ that stores urine until it's ready to be expelled from the body through urination.",
+                structure: `
+                    <p>The bladder has a unique structure that allows it to expand and contract:</p>
+                    <ul>
+                        <li>Hollow, balloon-like organ with muscular walls</li>
+                        <li>Located in the pelvis, just behind the pubic bone</li>
+                        <li>Four layers:
+                            <ul>
+                                <li>Inner mucosa (transitional epithelium)</li>
+                                <li>Submucosa (connective tissue)</li>
+                                <li>Detrusor muscle (smooth muscle)</li>
+                                <li>Outer adventitia/serosa</li>
+                            </ul>
+                        </li>
+                        <li>Trigone: triangular area between the openings of the two ureters and the urethra</li>
+                        <li>Internal and external sphincters that control urine release</li>
+                    </ul>
+                `,
+                function: `
+                    <p>The bladder performs several important functions:</p>
+                    <ul>
+                        <li>Stores urine until it's convenient to urinate</li>
+                        <li>Expands as it fills (can hold 400-600 ml of urine)</li>
+                        <li>Contracts during urination to expel urine</li>
+                        <li>Sends signals to the brain when it needs to be emptied</li>
+                        <li>Prevents bacterial infection with its specialized epithelium</li>
+                    </ul>
+                `,
+                facts: `
+                    <ul>
+                        <li>The average adult bladder can hold about 400-600 ml of urine (about 2 cups)</li>
+                        <li>You typically feel the urge to urinate when your bladder is about 1/3 full</li>
+                        <li>The bladder can expand to many times its empty size</li>
+                        <li>The transitional epithelium of the bladder is unique and allows it to stretch</li>
+                        <li>The bladder wall contains stretch receptors that signal when it's full</li>
+                    </ul>
+                `
+            },
+            "urethra": {
+                title: "Urethra",
+                info: "The urethra is a tube that connects the bladder to the outside of the body, allowing urine to exit during urination.",
+                structure: `
+                    <p>The urethra's structure differs between males and females:</p>
+                    <ul>
+                        <li><strong>Female urethra:</strong>
+                            <ul>
+                                <li>About 1.5-2 inches (3-5 cm) long</li>
+                                <li>Opens just above the vaginal opening</li>
+                            </ul>
+                        </li>
+                        <li><strong>Male urethra:</strong>
+                            <ul>
+                                <li>About 7-8 inches (18-20 cm) long</li>
+                                <li>Passes through the prostate gland and penis</li>
+                                <li>Has three sections: prostatic, membranous, and spongy</li>
+                                <li>Serves both urinary and reproductive functions</li>
+                            </ul>
+                        </li>
+                        <li>Lined with mucous membrane</li>
+                        <li>Contains internal and external sphincter muscles</li>
+                    </ul>
+                `,
+                function: `
+                    <p>The urethra performs these key functions:</p>
+                    <ul>
+                        <li>Provides a pathway for urine to exit the body</li>
+                        <li>In males, also serves as a conduit for semen during ejaculation</li>
+                        <li>Contains sphincter muscles that help control urination</li>
+                        <li>Helps prevent urinary tract infections with its mucosal lining</li>
+                    </ul>
+                `,
+                facts: `
+                    <ul>
+                        <li>The female urethra is much shorter than the male urethra</li>
+                        <li>The shorter female urethra is why women are more prone to urinary tract infections</li>
+                        <li>The male urethra has a dual function for both urination and ejaculation</li>
+                        <li>The external urethral sphincter is under voluntary control</li>
+                        <li>The urethra contains small glands that produce mucus to protect the lining</li>
+                    </ul>
+                `
+            }
+        };
+
+        // Disease information
+        const diseaseInfo = {
+            "uti": {
+                title: "Urinary Tract Infection (UTI)",
+                content: `
+                    <p>A urinary tract infection (UTI) is an infection in any part of the urinary system, including the kidneys, ureters, bladder, and urethra. Most infections involve the lower urinary tract — the bladder and the urethra.</p>
+                    
+                    <h4 class="text-lg font-medium mt-4 mb-2">Causes</h4>
+                    <p>UTIs typically occur when bacteria enter the urinary tract through the urethra and begin to multiply in the bladder. The urinary system has defenses against such invasions, but these defenses sometimes fail, allowing bacteria to take hold and grow into a full-blown infection.</p>
+                    
+                    <h4 class="text-lg font-medium mt-4 mb-2">Symptoms</h4>
+                    <ul>
+                        <li>A strong, persistent urge to urinate</li>
+                        <li>A burning sensation when urinating</li>
+                        <li>Passing frequent, small amounts of urine</li>
+                        <li>Cloudy, strong-smelling urine</li>
+                        <li>Pelvic pain (in women)</li>
+                        <li>Rectal pain (in men)</li>
+                    </ul>
+                    
+                    <h4 class="text-lg font-medium mt-4 mb-2">Risk Factors</h4>
+                    <ul>
+                        <li>Female anatomy (shorter urethra)</li>
+                        <li>Sexual activity</li>
+                        <li>Certain types of birth control</li>
+                        <li>Menopause</li>
+                        <li>Urinary tract abnormalities</li>
+                        <li>Blockages in the urinary tract</li>
+                        <li>Suppressed immune system</li>
+                    </ul>
+                    
+                    <h4 class="text-lg font-medium mt-4 mb-2">Treatment</h4>
+                    <p>UTIs are typically treated with antibiotics. The type of antibiotic and duration of treatment depend on the circumstances and the type of bacteria found in the urine. Symptoms often clear up within a few days of treatment, but it's important to complete the full course of antibiotics.</p>
+                    
+                    <h4 class="text-lg font-medium mt-4 mb-2">Prevention</h4>
+                    <ul>
+                        <li>Drink plenty of liquids, especially water</li>
+                        <li>Urinate when you feel the need; don't hold it in</li>
+                        <li>Wipe from front to back (for women)</li>
+                        <li>Empty your bladder before and after sexual activity</li>
+                        <li>Avoid potentially irritating feminine products</li>
+                        <li>Consider changing birth control methods if you have recurrent UTIs</li>
+                    </ul>
+                `
+            },
+            "kidney-stones": {
+                title: "Kidney Stones",
+                content: `
+                    <p>Kidney stones (renal calculi) are hard deposits made of minerals and salts that form inside your kidneys. They can affect any part of your urinary tract from your kidneys to your bladder.</p>
+                    
+                    <h4 class="text-lg font-medium mt-4 mb-2">Types of Kidney Stones</h4>
+                    <ul>
+                        <li><strong>Calcium stones:</strong> Most common, often in the form of calcium oxalate</li>
+                        <li><strong>Struvite stones:</strong> Form in response to an infection</li>
+                        <li><strong>Uric acid stones:</strong> Form in people who don't drink enough fluids or lose too much fluid</li>
+                        <li><strong>Cystine stones:</strong> Form in people with a hereditary disorder called cystinuria</li>
+                    </ul>
+                    
+                    <h4 class="text-lg font-medium mt-4 mb-2">Symptoms</h4>
+                    <p>Kidney stones often have no symptoms until they begin to move through the urinary tract. When this happens, symptoms may include:</p>
+                    <ul>
+                        <li>Severe, sharp pain in the side and back, below the ribs</li>
+                        <li>Pain that radiates to the lower abdomen and groin</li>
+                        <li>Pain that comes in waves and fluctuates in intensity</li>
+                        <li>Pain during urination</li>
+                        <li>Pink, red, or brown urine</li>
+                        <li>Cloudy or foul-smelling urine</li>
+                        <li>Nausea and vomiting</li>
+                        <li>Persistent need to urinate</li>
+                        <li>Urinating more often than usual</li>
+                        <li>Fever and chills if an infection is present</li>
+                    </ul>
+                    
+                    <h4 class="text-lg font-medium mt-4 mb-2">Risk Factors</h4>
+                    <ul>
+                        <li>Family history of kidney stones</li>
+                        <li>Dehydration</li>
+                        <li>Certain diets high in protein, sodium, and sugar</li>
+                        <li>Obesity</li>
+                        <li>Digestive diseases and surgery</li>
+                        <li>Certain medical conditions</li>
+                    </ul>
+                    
+                    <h4 class="text-lg font-medium mt-4 mb-2">Treatment</h4>
+                    <p>Treatment depends on the size and type of the stone:</p>
+                    <ul>
+                        <li><strong>Small stones:</strong> Often pass on their own with plenty of water and pain relievers</li>
+                        <li><strong>Larger stones:</strong> May require procedures such as:
+                            <ul>
+                                <li>Extracorporeal shock wave lithotripsy (ESWL): Uses sound waves to break up stones</li>
+                                <li>Ureteroscopy: A thin tube with a camera is passed through the urethra to remove or break up the stone</li>
+                                <li>Percutaneous nephrolithotomy: Surgical removal through a small incision in your back</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h4 class="text-lg font-medium mt-4 mb-2">Prevention</h4>
+                    <ul>
+                        <li>Drink plenty of water throughout the day</li>
+                        <li>Reduce sodium and animal protein in your diet</li>
+                        <li>Get enough calcium from food (but be careful with supplements)</li>
+                        <li>Limit oxalate-rich foods if you form calcium oxalate stones</li>
+                        <li>Avoid vitamin C supplements</li>
+                        <li>Medications may be prescribed to prevent certain types of stones</li>
+                    </ul>
+                `
+            },
+            "ckd": {
+                title: "Chronic Kidney Disease",
+                content: `
+                    <p>Chronic kidney disease (CKD) is the gradual loss of kidney function over time. When CKD reaches an advanced stage, dangerous levels of fluid, electrolytes, and wastes can build up in your body.</p>
+                    
+                    <h4 class="text-lg font-medium mt-4 mb-2">Stages of CKD</h4>
+                    <p>CKD is classified into five stages based on how well the kidneys filter waste from the blood (glomerular filtration rate or GFR):</p>
+                    <ul>
+                        <li><strong>Stage 1:</strong> Kidney damage with normal GFR (≥90 mL/min)</li>
+                        <li><strong>Stage 2:</strong> Mild reduction in GFR (60-89 mL/min)</li>
+                        <li><strong>Stage 3a:</strong> Moderate reduction in GFR (45-59 mL/min)</li>
+                        <li><strong>Stage 3b:</strong> Moderate reduction in GFR (30-44 mL/min)</li>
+                        <li><strong>Stage 4:</strong> Severe reduction in GFR (15-29 mL/min)</li>
+                        <li><strong>Stage 5:</strong> Kidney failure (GFR <15 mL/min or on dialysis)</li>
+                    </ul>
+                    
+                    <h4 class="text-lg font-medium mt-4 mb-2">Causes</h4>
+                    <ul>
+                        <li>Diabetes (types 1 and 2)</li>
+                        <li>High blood pressure</li>
+                        <li>Glomerulonephritis (inflammation of the kidney's filtering units)</li>
+                        <li>Polycystic kidney disease</li>
+                        <li>Prolonged obstruction of the urinary tract</li>
+                        <li>Recurrent kidney infections</li>
+                        <li>Certain medications and toxins</li>
+                    </ul>
+                    
+                    <h4 class="text-lg font-medium mt-4 mb-2">Symptoms</h4>
+                    <p>Early stages of CKD often have no symptoms. As the disease progresses, symptoms may include:</p>
+                    <ul>
+                        <li>Nausea and vomiting</li>
+                        <li>Loss of appetite</li>
+                        <li>Fatigue and weakness</li>
+                        <li>Sleep problems</li>
+                        <li>Changes in urine output</li>
+                        <li>Decreased mental sharpness</li>
+                        <li>Muscle twitches and cramps</li>
+                        <li>Swelling of feet and ankles</li>
+                        <li>Persistent itching</li>
+                        <li>Chest pain, if fluid builds up around the lining of the heart</li>
+                    </ul>
+                    
+                    <h4 class="text-lg font-medium mt-4 mb-2">Treatment</h4>
+                    <p>There is no cure for CKD, but treatment can help control symptoms, reduce complications, and slow progression. Treatments include:</p>
+                    <ul>
+                        <li>Medications to control blood pressure, blood sugar, and cholesterol</li>
+                        <li>Dietary changes to reduce salt, protein, and potassium intake</li>
+                        <li>Dialysis to remove waste and excess fluid when kidneys fail</li>
+                        <li>Kidney transplant in eligible patients</li>
+                        <li>Lifestyle changes such as quitting smoking and exercising</li>
+                    </ul>
+                `
+            }
+        };
