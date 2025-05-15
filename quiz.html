@@ -212,24 +212,48 @@
     <div class="drag-drop-container" aria-label="Label the organs drag and drop game">
       <h3>Label the Organs</h3>
       <div class="diagram-labels" aria-live="polite" aria-atomic="true" aria-relevant="additions">
-        <div class="label-item" draggable="true" id="label-leftKidney" tabindex="0">
-          <img src="glossaryimage/left_kidney.png" alt="Left Kidney" class="label-icon" />
-          Left Kidney
+        <div class="label-item" draggable="true" id="label-leftKidney" tabindex="0" aria-label="Left Kidney" onclick="handleClick('Left Kidney')">
+          <img 
+            src="quizimage/Left Kidney.jpeg" 
+            class="label-icon" 
+            style="width: 110px; height: auto;" 
+            alt="Left Kidney" 
+            draggable="false"
+          />
+          <span style="display: none;">Left Kidney</span>
+        </div>                
+        
+        <div class="label-item" draggable="true" id="label-rightKidney" tabindex="0" aria-label="Right Kidney" onclick="handleClick('Left Kidney')">
+          <img 
+            src="quizimage/Right Kidney.jpeg" 
+            class="label-icon" 
+            style="width: 100px; height: auto;" 
+            alt="Right Kidney" 
+            draggable="false"
+          />
+          <span style="display: none;">Right Kidney</span>
         </div>
         
-        <div class="label-item" draggable="true" id="label-rightKidney" tabindex="0">
-          <img src="glossaryimage/right_kidney.png" alt="Right Kidney" class="label-icon" />
-          Right Kidney
-        </div>
+        <div class="label-item" draggable="true" id="label-ureters" tabindex="0" aria-label="Left Kidney" onclick="handleClick('Left Kidney')">
+          <img 
+            src="quizimage/Ureters.png" 
+            class="label-icon" 
+            style="width: 100px; height: auto;" 
+            alt="Ureters" 
+            draggable="false"
+          />
+          <span style="display: none;">Ureters</span>
+        </div> 
         
-        <div class="label-item" draggable="true" id="label-ureters" tabindex="0">
-          <img src="glossaryimage/ureters.png" alt="Ureters" class="label-icon" />
-          Ureters
-        </div>
-        
-        <div class="label-item" draggable="true" id="label-bladder" tabindex="0">
-          <img src="glossaryimage/bladder.png" alt="Bladder" class="label-icon" />
-          Bladder
+        <div class="label-item" draggable="true" id="label-bladder" tabindex="0" aria-label="Bladder" onclick="handleClick('Left Kidney')">
+          <img 
+            src="quizimage/Bladder.jpg" 
+            class="label-icon" 
+            style="width: 120px; height: auto;" 
+            alt="Bladder" 
+            draggable="false"
+          />
+          <span style="display: none;">Bladder</span>
         </div>
         
         <div class="label-item" draggable="true" id="label-urethra" tabindex="0">
@@ -239,8 +263,8 @@
         
       </div>
       <div>
-        <div class="drop-zone" data-part="leftKidney" tabindex="0" aria-label="Drop zone for Left Kidney">Drop Left Kidney here</div>
-        <div class="drop-zone" data-part="rightKidney" tabindex="0" aria-label="Drop zone for Right Kidney">Drop Right Kidney here</div>
+        <div class="drop-zone" data-part="leftKidney" tabindex="0" aria-label="Drop zone for Left Kidney">Left part of Kidney</div>
+        <div class="drop-zone" data-part="rightKidney" tabindex="0" aria-label="Drop zone for Right Kidney">Right part of Kidney</div>
         <div class="drop-zone" data-part="ureters" tabindex="0" aria-label="Drop zone for Ureters">Drop Ureters here</div>
         <div class="drop-zone" data-part="bladder" tabindex="0" aria-label="Drop zone for Bladder">Drop Bladder here</div>
         <div class="drop-zone" data-part="urethra" tabindex="0" aria-label="Drop zone for Urethra">Drop Urethra here</div>
