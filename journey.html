@@ -1,164 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Urine Formation Journey - Urinary System Anatomy</title>
+  <title>
+    Urine Formation Journey - Urinary System Anatomy
+  </title>
   <style>
-  /* Reset */
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
+    /* Reset */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-  body, html {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #e5f0ff;
-    color: #064273;
-    margin: flex;
-    user-select: text;
-  }
+    body,
+    html {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #e5f0ff;
+      color: #064273;
+      margin: flex;
+      user-select: text;
+    }
 
-  nav {
-    width: 100%;
-    max-width: 480px;
-    background-color: #064273;
-    border-radius: 8px;
-    margin-bottom: 15px;
-    user-select: none;
-    margin-left: auto;
-    margin-right: auto;
-  }
+    nav {
+      width: 100%;
+      max-width: 480px;
+      background-color: #064273;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      user-select: none;
+      margin-left: auto;
+      margin-right: auto;
+    }
 
-  nav ul {
-    list-style: none;
-    display: flex;
-    justify-content: space-around;
-    padding: 10px 0;
-  }
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: space-around;
+      padding: 10px 0;
+    }
 
-  nav ul li a {
-    color: #f9d71c;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 0.9rem;
-    padding: 6px 10px;
-    display: block;
-    transition: background-color 0.3s ease;
-    border-radius: 6px;
-  }
+    nav ul li a {
+      color: #f9d71c;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 6px 10px;
+      display: block;
+      transition: background-color 0.3s ease;
+      border-radius: 6px;
+    }
 
-  nav ul li a:hover,
-  nav ul li a:focus {
-    background-color: #f9d71c;
-    color: #064273;
-    outline: none;
-  }
+    nav ul li a:hover,
+    nav ul li a:focus {
+      background-color: #f9d71c;
+      color: #064273;
+      outline: none;
+    }
 
-  h2 {
-    text-align: center;
-    color: #064273;
-    font-weight: 700;
-    margin-bottom: 15px;
-  }
+    h2 {
+      text-align: center;
+      color: #064273;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
 
-  .journey-steps {
-    display: flex;
-    justify-content: space-between;
-    gap: 8px;
-    font-size: 0.9rem;
-    max-width: 375px;
-    margin: auto;
-    user-select: text;
-  }
+    .journey-steps {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 0.9rem;
+      max-width: 375px;
+      margin: auto;
+      user-select: text;
+    }
 
-  .journey-step {
-    flex: 1;
-    background: #ffffff;
-    border-radius: 8px;
-    padding: 10px 8px;
-    text-align: center;
-    position: relative;
-    cursor: default;
-    border: 2px solid transparent;
-    transition: border-color 0.3s ease, background-color 0.3s ease;
-  }
+    .journey-step {
+      flex: 1;
+      background: #ffffff;
+      border-radius: 8px;
+      padding: 10px 8px;
+      text-align: center;
+      position: relative;
+      cursor: default;
+      border: 2px solid transparent;
+      transition: border-color 0.3s ease, background-color 0.3s ease;
+    }
 
-  .journey-step:hover,
-  .journey-step.active {
-    background: #064273;
-    color: #f9d71c;
-    border-color: #f9d71c;
-  }
+    .journey-step:hover,
+    .journey-step.active {
+      background: #064273;
+      color: #f9d71c;
+      border-color: #f9d71c;
+    }
 
-  .journey-step::after {
-    content: "→";
-    position: absolute;
-    right: -15px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-weight: 700;
-    color: #064273;
-  }
+    .journey-step::after {
+      content: '→';
+      position: absolute;
+      right: -15px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-weight: 700;
+      color: #064273;
+    }
 
-  .journey-step:last-child::after {
-    content: "";
-  }
+    .journey-step:last-child::after {
+      content: '';
+    }
 
   .tooltip {
-    position: absolute;
-    bottom: 110%;
-    left: 50%;
-    transform: translateX(-50%);
+    position: static;
+    margin-top: 6px;
     background: #064273;
     color: #f9d71c;
     padding: 6px 10px;
     border-radius: 6px;
     font-size: 0.8rem;
-    white-space: nowrap;
+    white-space: normal;
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.3s ease;
-    z-index: 10;
+    z-index: auto;
   }
 
-  .journey-step:hover .tooltip,
-  .journey-step.active .tooltip {
+  .tooltip.visible {
     opacity: 1;
     pointer-events: auto;
   }
+
     @media (max-width: 480px) {
-      body, html {
+
+      body,
+      html {
         margin: 10px;
       }
+
       nav {
         max-width: 100%;
         margin-left: 0;
         margin-right: 0;
         border-radius: 0;
       }
+
       nav ul {
         flex-direction: column;
         gap: 8px;
         padding: 10px;
       }
+
       nav ul li a {
         font-size: 1.1rem;
         padding: 10px;
         text-align: center;
       }
+
       .container {
         max-width: 100%;
         padding: 0 10px;
       }
+
       .wrapper {
         padding: 10px 0;
         min-height: auto;
       }
     }
-</style>
+  </style>
 </head>
+
 <body>
   <nav aria-label="Main navigation">
     <ul>
@@ -173,30 +183,48 @@
   </nav>
   <h2>Urine Formation Journey</h2>
   <div class="journey-steps" role="list">
-    <div class="journey-step" tabindex="0" role="listitem" aria-describedby="tooltip-filtration">
-      Filtration
-      <div class="tooltip" id="tooltip-filtration" role="tooltip">Blood is filtered in the glomerulus to remove waste and excess substances.</div>
+    <div>
+      <div class="journey-step" tabindex="0" role="listitem" aria-describedby="tooltip-filtration">
+        Filtration
+      </div>
+      <div class="tooltip" id="tooltip-filtration" role="tooltip">
+        Blood is filtered in the glomerulus to remove waste and excess substances.
+      </div>
     </div>
-    <div class="journey-step" tabindex="0" role="listitem" aria-describedby="tooltip-reabsorption">
-      Reabsorption
-      <div class="tooltip" id="tooltip-reabsorption" role="tooltip">Useful substances like glucose and water are reabsorbed back into the blood.</div>
+    <div>
+      <div class="journey-step" tabindex="0" role="listitem" aria-describedby="tooltip-reabsorption">
+        Reabsorption
+      </div>
+      <div class="tooltip" id="tooltip-reabsorption" role="tooltip">
+        Useful substances like glucose and water are reabsorbed back into the blood.
+      </div>
     </div>
-    <div class="journey-step" tabindex="0" role="listitem" aria-describedby="tooltip-secretion">
-      Secretion
-      <div class="tooltip" id="tooltip-secretion" role="tooltip">Additional waste substances are secreted into the tubules.</div>
+    <div>
+      <div class="journey-step" tabindex="0" role="listitem" aria-describedby="tooltip-secretion">
+        Secretion
+      </div>
+      <div class="tooltip" id="tooltip-secretion" role="tooltip">
+        Additional waste substances are secreted into the tubules.
+      </div>
     </div>
-    <div class="journey-step" tabindex="0" role="listitem" aria-describedby="tooltip-excretion">
-      Excretion
-      <div class="tooltip" id="tooltip-excretion" role="tooltip">Final urine is excreted into the ureters and transported to the bladder.</div>
+    <div>
+      <div class="journey-step" tabindex="0" role="listitem" aria-describedby="tooltip-excretion">
+        Excretion
+      </div>
+      <div class="tooltip" id="tooltip-excretion" role="tooltip">
+        Final urine is excreted into the ureters and transported to the bladder.
+      </div>
     </div>
   </div>
 
   <div id="video-container" style="max-width: 600px; margin: 20px auto; display: none; text-align: center;">
-    <video id="journey-video" width="100%" height="340" controls>
+    <video id="journey-video" width="auto" height="auto" controls style="max-width: 100%; max-height: 340px;">
       <source src="" type="video/mp4" />
       Your browser does not support the video tag.
     </video>
-    <button id="close-video-btn" style="margin-top: 10px; padding: 6px 12px; font-size: 1rem; cursor: pointer;">Close Video</button>
+    <button id="close-video-btn" style="margin-top: 10px; padding: 6px 12px; font-size: 1rem; cursor: pointer;">
+      Close Video
+    </button>
   </div>
 
   <script>
@@ -232,6 +260,12 @@
         videoContainer.style.display = 'none';
       }
 
+      function hideAllDescriptions() {
+        document.querySelectorAll('.tooltip').forEach(desc => {
+          desc.classList.remove('visible');
+        });
+      }
+
       journeySteps.forEach(step => {
         step.addEventListener('click', () => {
           const stepText = step.textContent.trim().toLowerCase();
@@ -244,7 +278,33 @@
 
           if (key) {
             showVideo(key);
+            hideAllDescriptions();
+            const desc = document.getElementById(`tooltip-${key}`);
+            if (desc) {
+              desc.classList.add('visible');
+            }
           }
+        });
+
+        step.addEventListener('mouseenter', () => {
+          const stepText = step.textContent.trim().toLowerCase();
+          let key = '';
+          if (stepText.includes('filtration')) key = 'filtration';
+          else if (stepText.includes('reabsorption')) key = 'reabsorption';
+          else if (stepText.includes('secretion')) key = 'secretion';
+          else if (stepText.includes('excretion')) key = 'excretion';
+
+          if (key) {
+            hideAllDescriptions();
+            const desc = document.getElementById(`tooltip-${key}`);
+            if (desc) {
+              desc.classList.add('visible');
+            }
+          }
+        });
+
+        step.addEventListener('mouseleave', () => {
+          hideAllDescriptions();
         });
       });
 
@@ -252,4 +312,5 @@
     })();
   </script>
 </body>
+
 </html>
