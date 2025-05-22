@@ -5,111 +5,159 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Urine Formation Journey - Urinary System Anatomy</title>
   <style>
-    body, html {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #e5f0ff;
-      color: #064273;
-      margin: 20px;
-      user-select: text;
+  /* Reset */
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body, html {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #e5f0ff;
+    color: #064273;
+    margin: 20px;
+    user-select: text;
+  }
+
+  nav {
+    width: 100%;
+    max-width: 480px;
+    background-color: #064273;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    user-select: none;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+  }
+
+  nav ul li a {
+    color: #f9d71c;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 6px 10px;
+    display: block;
+    transition: background-color 0.3s ease;
+    border-radius: 6px;
+  }
+
+  nav ul li a:hover,
+  nav ul li a:focus {
+    background-color: #f9d71c;
+    color: #064273;
+    outline: none;
+  }
+
+  h2 {
+    text-align: center;
+    color: #064273;
+    font-weight: 700;
+    margin-bottom: 15px;
+  }
+
+  .journey-steps {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    font-size: 0.9rem;
+    max-width: 375px;
+    margin: auto;
+    user-select: text;
+  }
+
+  .journey-step {
+    flex: 1;
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 10px 8px;
+    text-align: center;
+    position: relative;
+    cursor: default;
+    border: 2px solid transparent;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+  }
+
+  .journey-step:hover,
+  .journey-step.active {
+    background: #064273;
+    color: #f9d71c;
+    border-color: #f9d71c;
+  }
+
+  .journey-step::after {
+    content: "→";
+    position: absolute;
+    right: -15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-weight: 700;
+    color: #064273;
+  }
+
+  .journey-step:last-child::after {
+    content: "";
+  }
+
+  .tooltip {
+    position: absolute;
+    bottom: 110%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #064273;
+    color: #f9d71c;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 10;
+  }
+
+  .journey-step:hover .tooltip,
+  .journey-step.active .tooltip {
+    opacity: 1;
+    pointer-events: auto;
+  }
+    @media (max-width: 480px) {
+      body, html {
+        margin: 10px;
+      }
+      nav {
+        max-width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        border-radius: 0;
+      }
+      nav ul {
+        flex-direction: column;
+        gap: 8px;
+        padding: 10px;
+      }
+      nav ul li a {
+        font-size: 1.1rem;
+        padding: 10px;
+        text-align: center;
+      }
+      .container {
+        max-width: 100%;
+        padding: 0 10px;
+      }
+      .wrapper {
+        padding: 10px 0;
+        min-height: auto;
+      }
     }
-    nav {
-      width: 100%;
-      max-width: 480px;
-      background-color: #064273;
-      border-radius: 8px;
-      margin-bottom: 15px;
-      user-select: none;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    nav ul {
-      list-style: none;
-      display: flex;
-      justify-content: space-around;
-      padding: 10px 0;
-    }
-    nav ul li a {
-      color: #f9d71c;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 0.9rem;
-      padding: 6px 10px;
-      display: block;
-      transition: background-color 0.3s ease;
-      border-radius: 6px;
-    }
-    nav ul li a:hover,
-    nav ul li a:focus {
-      background-color: #f9d71c;
-      color: #064273;
-      outline: none;
-    }
-    h2 {
-      text-align: center;
-      color: #064273;
-      font-weight: 700;
-      margin-bottom: 15px;
-    }
-    .journey-steps {
-      display: flex;
-      justify-content: space-between;
-      gap: 8px;
-      font-size: 0.9rem;
-      max-width: 375px;
-      margin: auto;
-      user-select: text;
-    }
-    .journey-step {
-      flex: 1;
-      background: #ffffff;
-      border-radius: 8px;
-      padding: 10px 8px;
-      text-align: center;
-      position: relative;
-      cursor: default;
-      border: 2px solid transparent;
-      transition: border-color 0.3s ease, background-color 0.3s ease;
-    }
-    .journey-step:hover,
-    .journey-step.active {
-      background: #064273;
-      color: #f9d71c;
-      border-color: #f9d71c;
-    }
-    .journey-step::after {
-      content: "→";
-      position: absolute;
-      right: -15px;
-      top: 50%;
-      transform: translateY(-50%);
-      font-weight: 700;
-      color: #064273;
-    }
-    .journey-step:last-child::after {
-      content: "";
-    }
-    .tooltip {
-      position: absolute;
-      bottom: 110%;
-      left: 50%;
-      transform: translateX(-50%);
-      background: #064273;
-      color: #f9d71c;
-      padding: 6px 10px;
-      border-radius: 6px;
-      font-size: 0.8rem;
-      white-space: nowrap;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
-      z-index: 10;
-    }
-    .journey-step:hover .tooltip,
-    .journey-step.active .tooltip {
-      opacity: 1;
-      pointer-events: auto;
-    }
-  </style>
+</style>
 </head>
 <body>
   <nav aria-label="Main navigation">

@@ -44,6 +44,27 @@
       color: #064273;
       outline: none;
     }
+    @media (max-width: 480px) {
+  body, html {
+    margin: 10px;
+  }
+  nav {
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    border-radius: 0;
+  }
+  nav ul {
+    flex-direction: column;
+    gap: 8px;
+    padding: 10px;
+  }
+  nav ul li a {
+    font-size: 1.1rem;
+    padding: 10px;
+    text-align: center;
+  }
+}
     h2 {
       text-align: center;
       color: #064273;
@@ -195,16 +216,16 @@
 </head>
 <body>
   <nav aria-label="Main navigation">
-    <ul>
-      <li><a href="trytest.html">Home</a></li>
-      <li><a href="diagram.html">Diagram</a></li>
-      <li><a href="journey.html">Journey</a></li>
-      <li><a href="quiz.html">Quiz</a></li>
-      <li><a href="disorders.html">Disorders</a></li>
-      <li><a href="tips.html">Tips</a></li>
-      <li><a href="glossary.html">Glossary</a></li>
-    </ul>
-  </nav>
+  <ul>
+    <li><a href="trytest.html">Home</a></li>
+    <li><a href="diagram.html">Diagram</a></li>
+    <li><a href="journey.html">Journey</a></li>
+    <li><a href="quiz.html">Quiz</a></li>
+    <li><a href="disorders.html">Disorders</a></li>
+    <li><a href="tips.html">Tips</a></li>
+    <li><a href="glossary.html">Glossary</a></li>
+  </ul>
+</nav>
   <h2>Quiz &amp; Games</h2>
   <div class="quiz-section">
 
@@ -222,8 +243,11 @@
       </div>
         
       </div>
-      <div>
-        <div class="drop-zone" data-part="leftKidney" tabindex="0" aria-label="Drop zone for Left Kidney">Left part of Kidney</div>
+      <div class="drop-zone" data-part="leftKidney" tabindex="0" aria-label="Drop zone for Left Kidney" ondrop="handleDrop(event)" ondragover="allowDrop(event)">
+  <img src="quizimage/Left_Kidney.jpeg" alt="Left Kidney Image" class="hidden-image" />
+  <span>Left part of Kidney</span>
+</div>
+
         <div class="drop-zone" data-part="rightKidney" tabindex="0" aria-label="Drop zone for Right Kidney">Right part of Kidney</div>
         <div class="drop-zone" data-part="ureters" tabindex="0" aria-label="Drop zone for Ureters">Drop Ureters here</div>
         <div class="drop-zone" data-part="bladder" tabindex="0" aria-label="Drop zone for Bladder">Drop Bladder here</div>
