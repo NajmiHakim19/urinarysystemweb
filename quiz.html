@@ -265,31 +265,23 @@
 
     <!-- True or False Quiz -->
     <div class="tf-quiz" aria-label="True or False quiz about urinary system">
-      <h3>True or False</h3>
-      <div class="tf-question" data-answer="true" tabindex="0">The kidneys filter about 50 gallons of blood per day.</div>
-      <div class="tf-buttons">
-        <button type="button" aria-label="True" class="tf-btn" data-value="true">True</button>
-        <button type="button" aria-label="False" class="tf-btn" data-value="false">False</button>
-      </div>
-      <div class="tf-question" data-answer="false" tabindex="0">The urethra carries urine from the kidneys to the bladder.</div>
-      <div class="tf-buttons">
-        <button type="button" aria-label="True" class="tf-btn" data-value="true">True</button>
-        <button type="button" aria-label="False" class="tf-btn" data-value="false">False</button>
-      </div>
-    </div>
+  <h3>True or False</h3>
+  <div id="tf-question-container"></div>
+  <button id="next-tf-questions" style="margin-top: 10px;">Change Question</button>
+  <button id="reset-tf" style="margin-top: 10px;">Reset True/False Quiz</button>
+</div>
+
 
     <!-- Case Study Game -->
     <div class="case-study" aria-label="Case study game to diagnose urinary system conditions">
-      <h3>Case Study Game</h3>
-      <p><strong>Patient Symptoms:</strong> Frequent painful urination, cloudy urine, and lower abdominal pain.</p>
-      <form id="case-study-form">
-        <label><input type="radio" name="diagnosis" value="UTI" required /> Urinary Tract Infection (UTI)</label>
-        <label><input type="radio" name="diagnosis" value="Kidney Stone" /> Kidney Stone</label>
-        <label><input type="radio" name="diagnosis" value="Other" /> Other</label>
-        <button type="submit">Submit Diagnosis</button>
-      </form>
-      <div class="result" aria-live="polite" aria-atomic="true"></div>
-    </div>
+  <h3>Case Study Game</h3>
+  <div id="case-study-content">
+    <!-- Case study content will be injected here -->
+  </div>
+  <button id="change-case" style="margin-top:10px;">Change Case Study</button>
+  <button id="reset-case" style="margin-top:10px;">Reset Case Study</button>
+</div>
+
 
   </div>
   <script>
@@ -315,6 +307,25 @@
       e.dataTransfer.setData('text/plain', e.target.id);
       setTimeout(() => e.target.classList.add('hidden'), 0);
     }
+
+    // Reset True/False Quiz
+  document.getElementById('reset-tf').addEventListener('click', () => {
+  const tfQuestions = document.querySelectorAll('.tf-quiz .tf-buttons');
+  tfQuestions.forEach(group => {
+    const buttons = group.querySelectorAll('button');
+    buttons.forEach(btn => {
+      btn.disabled = false;
+      btn.classList.remove('correct', 'incorrect');
+    });
+  });
+});
+
+// Reset Case Study Game
+document.getElementById('reset-case').addEventListener('click', () => {
+  caseForm.reset();
+  caseResult.textContent = '';
+});
+
 
     function dragOver(e) {
       e.preventDefault();
@@ -381,46 +392,161 @@
     }
 
     // True or False Quiz
-    const tfButtons = document.querySelectorAll('.tf-btn');
-    tfButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        const parent = button.closest('.tf-quiz');
-        const question = button.parentElement.previousElementSibling;
-        const correctAnswer = question.dataset.answer;
-        const userAnswer = button.dataset.value;
-        const buttons = button.parentElement.querySelectorAll('button');
-        buttons.forEach(btn => {
-          btn.disabled = true;
-          btn.classList.remove('correct', 'incorrect');
+    // All TF questions (sets of two)
+const tfQuestionSets = [
+  [
+    { text: 'The kidneys filter about 50 gallons of blood per day.', answer: 'true' },
+    { text: 'The urethra carries urine from the kidneys to the bladder.', answer: 'false' }
+  ],
+  [
+    { text: 'Urine is stored in the bladder.', answer: 'true' },
+    { text: 'The ureters carry urine from the bladder to the outside of the body.', answer: 'false' }
+  ],
+  [
+    { text: 'Each kidney has around one million nephrons.', answer: 'true' },
+    { text: 'The bladder produces urine.', answer: 'false' }
+  ]
+];
+
+let currentSetIndex = 0;
+const tfContainer = document.getElementById('tf-question-container');
+
+// Render TF questions
+function renderTFQuestions() {
+  tfContainer.innerHTML = ''; // Clear previous
+  const set = tfQuestionSets[currentSetIndex];
+  set.forEach((q, idx) => {
+    const questionDiv = document.createElement('div');
+    questionDiv.className = 'tf-question';
+    questionDiv.dataset.answer = q.answer;
+    questionDiv.tabIndex = 0;
+    questionDiv.textContent = q.text;
+
+    const buttonContainer = document.createElement('div');
+    buttonContainer.className = 'tf-buttons';
+
+    ['true', 'false'].forEach(val => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'tf-btn';
+      btn.dataset.value = val;
+      btn.textContent = val.charAt(0).toUpperCase() + val.slice(1);
+      btn.setAttribute('aria-label', val);
+      btn.addEventListener('click', () => {
+        const correctAnswer = questionDiv.dataset.answer;
+        const userAnswer = btn.dataset.value;
+        const buttons = buttonContainer.querySelectorAll('button');
+        buttons.forEach(b => {
+          b.disabled = true;
+          b.classList.remove('correct', 'incorrect');
         });
         if (userAnswer === correctAnswer) {
-          button.classList.add('correct');
+          btn.classList.add('correct');
         } else {
-          button.classList.add('incorrect');
+          btn.classList.add('incorrect');
         }
       });
+      buttonContainer.appendChild(btn);
     });
 
-    // Case Study Game
-  const caseForm = document.getElementById('case-study-form');
-  const caseResult = document.querySelector('.case-study .result');
-
-  caseForm.addEventListener('submit', e => {
-    e.preventDefault();
-    const formData = new FormData(caseForm);
-    const diagnosis = formData.get('diagnosis');
-    let message = '';
-
-    if (diagnosis === 'UTI') {
-      message = '✅ Correct! The symptoms indicate a Urinary Tract Infection.';
-    } else if (diagnosis === 'Kidney Stone') {
-      message = '❌ Not quite. The symptoms are more typical of a UTI.';
-    } else {
-      message = '⚠️ Please consult a healthcare professional for an accurate diagnosis.';
-    }
-
-    caseResult.textContent = message;
+    tfContainer.appendChild(questionDiv);
+    tfContainer.appendChild(buttonContainer);
   });
+}
+
+// Change question set
+document.getElementById('next-tf-questions').addEventListener('click', () => {
+  currentSetIndex = (currentSetIndex + 1) % tfQuestionSets.length;
+  renderTFQuestions();
+});
+
+// Reset TF
+document.getElementById('reset-tf').addEventListener('click', () => {
+  renderTFQuestions(); // Just re-render the current set
+});
+
+// Initial render
+renderTFQuestions();
+
+
+    // Case Study Game
+  // Case Study Game Data
+const caseStudies = [
+  {
+    symptoms: 'Frequent painful urination, cloudy urine, and lower abdominal pain.',
+    options: [
+      { value: 'UTI', label: 'Urinary Tract Infection (UTI)', feedback: '✅ Correct! The symptoms indicate a Urinary Tract Infection.' },
+      { value: 'Kidney Stone', label: 'Kidney Stone', feedback: '❌ Not quite. The symptoms are more typical of a UTI.' },
+      { value: 'Other', label: 'Other', feedback: '⚠️ Please consult a healthcare professional for an accurate diagnosis.' }
+    ],
+    correct: 'UTI'
+  },
+  {
+    symptoms: 'Severe side pain, nausea, and blood in urine.',
+    options: [
+      { value: 'Kidney Stone', label: 'Kidney Stone', feedback: '✅ Correct! These are signs of a kidney stone.' },
+      { value: 'UTI', label: 'Urinary Tract Infection (UTI)', feedback: '❌ This is more characteristic of a kidney stone.' },
+      { value: 'Other', label: 'Other', feedback: '⚠️ More information is needed, but kidney stone is likely.' }
+    ],
+    correct: 'Kidney Stone'
+  },
+  {
+    symptoms: 'Swelling in legs, fatigue, and foamy urine.',
+    options: [
+      { value: 'Kidney Failure', label: 'Kidney Failure', feedback: '✅ Correct! These symptoms align with kidney failure.' },
+      { value: 'UTI', label: 'Urinary Tract Infection (UTI)', feedback: '❌ These are not typical UTI symptoms.' },
+      { value: 'Other', label: 'Other', feedback: '⚠️ These symptoms suggest serious kidney problems.' }
+    ],
+    correct: 'Kidney Failure'
+  }
+];
+
+let currentCaseIndex = 0;
+const caseContainer = document.getElementById('case-study-content');
+
+// Render Case Study
+function renderCaseStudy() {
+  const caseStudy = caseStudies[currentCaseIndex];
+  caseContainer.innerHTML = `
+    <p><strong>Patient Symptoms:</strong> ${caseStudy.symptoms}</p>
+    <form id="case-study-form">
+      ${caseStudy.options.map(opt => `
+        <label>
+          <input type="radio" name="diagnosis" value="${opt.value}" required />
+          ${opt.label}
+        </label>
+      `).join('')}
+      <button type="submit">Submit Diagnosis</button>
+    </form>
+    <div class="result" aria-live="polite" aria-atomic="true"></div>
+  `;
+
+  const form = document.getElementById('case-study-form');
+  const result = caseContainer.querySelector('.result');
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const data = new FormData(form);
+    const answer = data.get('diagnosis');
+    const feedback = caseStudy.options.find(opt => opt.value === answer).feedback;
+    result.textContent = feedback;
+  });
+}
+
+// Change Case Study
+document.getElementById('change-case').addEventListener('click', () => {
+  currentCaseIndex = (currentCaseIndex + 1) % caseStudies.length;
+  renderCaseStudy();
+});
+
+// Reset Case Study
+document.getElementById('reset-case').addEventListener('click', () => {
+  renderCaseStudy(); // Re-render current
+});
+
+// Initial render
+renderCaseStudy();
+
   </script>
 </body>
 </html>
