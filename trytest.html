@@ -5,79 +5,81 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
   <title>Interactive Urinary System Anatomy</title>
   <style>
-  /* Reset */
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
+    /* Reset */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-  body, html {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #e5f0ff;
-    color: #064273;
-    margin: 20px;
-    user-select: text;
-  }
+    body, html {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #e5f0ff;
+      color: #064273;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+      text-align: center;
+    }
 
-  nav {
-    width: 100%;
-    max-width: 480px;
-    background-color: #064273;
-    border-radius: 8px;
-    margin-bottom: 15px;
-    user-select: none;
-    margin-left: auto;
-    margin-right: auto;
-  }
+    .container {
+      width: 100%;
+      max-width: 700px;
+    }
 
-  nav ul {
-    list-style: none;
-    display: flex;
-    justify-content: space-around;
-    padding: 10px 0;
-  }
+    nav {
+      width: 100%;
+      max-width: 480px;
+      background-color: #064273;
+      border-radius: 8px;
+      margin: 0 auto 15px auto;
+      user-select: none;
+    }
 
-  nav ul li a {
-    color: #f9d71c;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 0.9rem;
-    padding: 6px 10px;
-    display: block;
-    transition: background-color 0.3s ease;
-    border-radius: 6px;
-  }
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: space-around;
+      padding: 10px 0;
+    }
 
-  nav ul li a:hover,
-  nav ul li a:focus {
-    background-color: #f9d71c;
-    color: #064273;
-    outline: none;
-  }
+    nav ul li a {
+      color: #f9d71c;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 6px 10px;
+      display: block;
+      transition: background-color 0.3s ease;
+      border-radius: 6px;
+    }
 
-  h1 {
-    font-size: 1.8rem;
-    margin-bottom: 8px;
-    color: #064273;
-    text-align: center;
-  }
+    nav ul li a:hover,
+    nav ul li a:focus {
+      background-color: #f9d71c;
+      color: #064273;
+      outline: none;
+    }
 
-  p.description {
-    font-size: 1rem;
-    color: #555;
-    margin-bottom: 15px;
-    text-align: center;
-  }
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+      color: #064273;
+    }
 
-  @media (max-width: 480px) {
+    p.description {
+      font-size: 1rem;
+      color: #555;
+      margin-bottom: 20px;
+    }
+
+    @media (max-width: 480px) {
       body, html {
-        margin: 10px;
+        padding: 10px;
       }
       nav {
         max-width: 100%;
-        margin-left: 0;
-        margin-right: 0;
         border-radius: 5%;
       }
       nav ul {
@@ -90,30 +92,26 @@
         padding: 10px;
         text-align: center;
       }
-      .container {
-        max-width: 100%;
-        padding: 0 10px;
-      }
-      .wrapper {
-        padding: 10px 0;
-        min-height: auto;
-      }
     }
-</style>
+  </style>
 </head>
 <body>
-  <nav aria-label="Main navigation">
-    <ul>
-      <li><a href="trytest.html">Home</a></li>
-      <li><a href="diagram.html">Diagram</a></li>
-      <li><a href="journey.html">Journey</a></li>
-      <li><a href="quiz.html">Quiz</a></li>
-      <li><a href="disorders.html">Disorders</a></li>
-      <li><a href="tips.html">Tips</a></li>
-      <li><a href="glossary.html">Glossary</a></li>
-    </ul>
-  </nav>
-  <h1>Urinary System Anatomy</h1>
-  <p class="description">Welcome to the interactive urinary system anatomy website. Please use the navigation to explore different features.</p>
+  <div class="container">
+    <nav aria-label="Main navigation">
+      <ul>
+        <li><a href="trytest.html">Home</a></li>
+        <li><a href="diagram.html">Diagram</a></li>
+        <li><a href="journey.html">Journey</a></li>
+        <li><a href="quiz.html">Quiz</a></li>
+        <li><a href="disorders.html">Disorders</a></li>
+        <li><a href="tips.html">Tips</a></li>
+        <li><a href="glossary.html">Glossary</a></li>
+      </ul>
+    </nav>
+    <h1>Urinary System Anatomy</h1>
+    <p class="description">
+      Welcome to the interactive urinary system anatomy website. This interactive website is fully created by Group 11. Please use the navigation to explore different features.
+    </p>
+  </div>
 </body>
 </html>
