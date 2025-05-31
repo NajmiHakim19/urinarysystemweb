@@ -2,216 +2,209 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>
-    Urine Formation Journey - Urinary System Anatomy
-  </title>
-  <link rel="stylesheet" href="styles.css" />
-  <style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Urine Formation Journey - Urinary System Anatomy</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
     /* Reset */
     * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
     }
 
     body,
     html {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #e5f0ff;
-      color: #064273;
-      margin: flex;
-      user-select: text;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: #e5f0ff;
+        color: #064273;
+        user-select: text;
+        margin: flex;
     }
+
     nav {
-      width: auto;
-      max-width: 480px;
-      background-color: #064273;
-      border-radius: 8px;
-      margin-bottom: 15px;
-      user-select: none;
-      margin-left: auto;
-      margin-right: auto;
+        width: auto;
+        max-width: 480px;
+        background-color: #064273;
+        border-radius: 8px;
+        margin: 0 auto 15px;
+        user-select: none;
     }
+
     nav ul {
-      list-style: none;
-      display: flex;
-      justify-content: space-around;
-      padding: 10px 0;
+        list-style: none;
+        display: flex;
+        justify-content: space-around;
+        padding: 10px 0;
     }
+
     nav ul li a {
-      color: #f9d71c;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 0.9rem;
-      padding: 6px 10px;
-      display: block;
-      transition: background-color 0.3s ease;
-      border-radius: 6px;
+        color: #f9d71c;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 0.9rem;
+        padding: 6px 10px;
+        display: block;
+        transition: background-color 0.3s ease;
+        border-radius: 6px;
     }
+
     nav ul li a:hover,
     nav ul li a:focus {
-      background-color: #f9d71c;
-      color: #064273;
-      outline: none;
+        background-color: #f9d71c;
+        color: #064273;
+        outline: none;
     }
+
     h2 {
-      text-align: center;
-      color: #064273;
-      font-weight: 700;
-      margin-bottom: 15px;
-    }
-    h2 {
-      text-align: center;
-      color: #064273;
-      font-weight: 700;
-      margin-bottom: 15px;
+        text-align: center;
+        color: #064273;
+        font-weight: 700;
+        margin-bottom: 15px;
     }
 
     .journey-steps {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 8px;
-  font-size: 0.9rem;
-  margin: 20px auto;
-}
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        font-size: 0.9rem;
+        margin: 20px auto;
+        max-width: 300px;
+    }
+
+    .journey-step-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 
     .journey-step {
-      flex: 1;
-      background: #ffffff;
-      border-radius: 100px;
-      padding: 8px 5px;
-      text-align: center;
-      position: relative;
-      cursor: default;
-      border: 1px solid transparent;
-      transition: border-color 0.3s ease, background-color 0.3s ease;
+        background: #ffffff;
+        border-radius: 100px;
+        padding: 15px 20px;
+        text-align: center;
+        position: relative;
+        cursor: default;
+        border: 1px solid transparent;
+        transition: border-color 0.3s ease, background-color 0.3s ease;
+        width: 100%;
     }
 
     .journey-step:hover,
     .journey-step.active {
-      background: #064273;
-      color: #f9d71c;
-      border-color: #f9d71c;
-    }
-
-.journey-step::after {
-  content: '→';
-  position: absolute;
-  right: -13px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-weight: 700;
-  color: #064273;
-}
-
-.journey-steps > div:last-child .journey-step::after {
-  content: ''; /* Removes the arrow only from the last step */
-}
-
-
-
-  .tooltip {
-    position: static;
-    margin-top: 6px;
-    background: #064273;
-    color: #f9d71c;
-    padding: 6px 10px;
-    border-radius: 6px;
-    font-size: 0.8rem;
-    white-space: normal;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-    z-index: auto;
-  }
-
-  .tooltip.visible {
-    opacity: 1;
-    pointer-events: auto;
-  }
-
-  @media (max-width: 480px) {
-      body, html {
-        margin: 10px;
-      }
-      nav {
-        max-width: 100%;
-        margin-left: 0;
-        margin-right: 0;
-        border-radius: 5%;
-      }
-      nav ul {
-        flex-direction: column;
-        gap: 1px;
-        padding: 5px;
-      }
-      nav ul li a {
-        font-size: 1.1rem;
-        padding: 10px;
-        text-align: center;
-      }
-      .container {
-        max-width: 100%;
-        padding: 0 10px;
-      }
-      .wrapper {
-        padding: 10px 0;
-        min-height: auto;
-      }
+        background: #064273;
+        color: #f9d71c;
+        border-color: #f9d71c;
     }
 
     .arrow {
-  display: flex;
-  justify-content: center;
-  margin: 10px 0;
-}
-.arrow svg {
-  width: 28px;
-  height: 28px;
-}
+        display: flex;
+        justify-content: center;
+        margin: 5px 0;
+    }
 
+    .arrow svg {
+        width: 28px;
+        height: 28px;
+    }
 
-  .journey-steps {
-    flex-direction: column;
-    align-items: center;
-  }
+    .tooltip {
+        position: static;
+        margin-top: 6px;
+        background: #064273;
+        color: #f9d71c;
+        padding: 6px 10px;
+        border-radius: 6px;
+        font-size: 0.8rem;
+        white-space: normal;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+        z-index: auto;
+        text-align: center;
+    }
 
-  .journey-step::after {
-    display: none; /* Optional: hide arrows on small screens */
-  }
+    .tooltip.visible {
+        opacity: 1;
+        pointer-events: auto;
+    }
 
+    @media (max-width: 480px) {
+        body,
+        html {
+            margin: 10px;
+        }
 
+        nav {
+            max-width: 100%;
+            margin: 0;
+            border-radius: 5%;
+        }
 
+        nav ul {
+            flex-direction: column;
+            gap: 1px;
+            padding: 5px;
+        }
 
+        nav ul li a {
+            font-size: 1.1rem;
+            padding: 10px;
+            text-align: center;
+        }
 
-      .container {
-        max-width: 100%;
-        padding: 0 10px;
-      }
-      .wrapper {
-        padding: 10px 0;
-        min-height: auto;
-      }
-      .container {
-  max-width: 1500px;
-  margin: 0 auto;
-  padding: 40px; /* Updated padding */
-  text-align: center;
-}
-#journey-video {
-  width: 100%;
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-}
+        .container {
+            max-width: 100%;
+            padding: 0 10px;
+        }
 
+        .wrapper {
+            padding: 10px 0;
+            min-height: auto;
+        }
 
-    
-  </style>
+        .journey-steps {
+            gap: 10px;
+            max-width: 90%;
+        }
+
+        .container {
+            max-width: 1500px;
+            margin: 0 auto;
+            padding: 40px;
+            text-align: center;
+        }
+
+        #journey-video {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+            margin: 20px auto;
+            display: true; /* Consider replacing this with "block" or "none" */
+        }
+
+        #close-video-btn {
+            margin-top: 10px;
+            padding: 8px 16px;
+            font-size: 1rem;
+            cursor: pointer;
+            background-color: #f9d71c;
+            color: #064273;
+            border: none;
+            border-radius: 6px;
+            transition: background-color 0.3s ease;
+        }
+
+        #close-video-btn:hover {
+            background-color: #064273;
+            color: #f9d71c;
+        }
+    }
+</style>
 </head>
 
 <body>

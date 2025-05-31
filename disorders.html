@@ -77,6 +77,11 @@
       margin-bottom: 6px;
       font-weight: 700;
     }
+    .disorder-card.floating {
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
+      transform: translateY(-4px);
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
+    }
    @media (max-width: 480px) {
       body, html {
         margin: 10px;
@@ -148,4 +153,14 @@
     </div>
   </div>
 </body>
+<script>
+  document.querySelectorAll('.disorder-card').forEach(card => {
+    card.addEventListener('click', () => {
+      // Remove floating from all cards
+      document.querySelectorAll('.disorder-card').forEach(c => c.classList.remove('floating'));
+      // Add to the clicked one
+      card.classList.add('floating');
+    });
+  });
+</script>
 </html>

@@ -562,18 +562,21 @@ const caseContainer = document.getElementById('case-study-content');
 function renderCaseStudy() {
   const caseStudy = caseStudies[currentCaseIndex];
   caseContainer.innerHTML = `
+  <div class="case-wrapper">
     <p><strong>Patient Symptoms:</strong> ${caseStudy.symptoms}</p>
     <form id="case-study-form">
       ${caseStudy.options.map(opt => `
         <label>
           <input type="radio" name="diagnosis" value="${opt.value}" required />
           ${opt.label}
-        </label>
+        </label><br/>
       `).join('')}
       <button type="submit">Submit Diagnosis</button>
     </form>
     <div class="result" aria-live="polite" aria-atomic="true"></div>
-  `;
+  </div>
+`;
+
 
   const form = document.getElementById('case-study-form');
   const result = caseContainer.querySelector('.result');
