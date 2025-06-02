@@ -30,11 +30,10 @@
     }
 
     nav {
-      width: 100%;
       max-width: 480px;
       background-color: #064273;
       border-radius: 8px;
-      margin: 0 auto 15px auto;
+      margin: 0 auto 15px;
       user-select: none;
     }
 
@@ -98,6 +97,7 @@
       background: #ffffff;
       border-radius: 12px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border: 2px solid #f9d71c; /* Yellow outline added */
       width: 450px; /* Adjusted width for cleaner layout */
       padding: 15px;
       text-align: left;
@@ -112,7 +112,8 @@
     .member-card:focus,
     .member-card:active {
       transform: translateY(-8px);
-      box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 12px 20px rgba(0, 0, 0, 0.8);
+      border-color: #064273; /* Change to blue on interaction */
       outline: none;
     }
 
@@ -142,26 +143,22 @@
     }
 
     nav {
-      max-width: 100%;
-      border-radius: 8px;
-      background-color: #064273;
-    }
+        max-width: 100%;
+        border-radius: 5%;
+      }
 
-    nav ul {
-      flex-direction: column;
-      gap: 5px;
-      padding: 10px;
-    }
+      nav ul {
+        flex-direction: column;
+        gap: 1px;
+        padding: 5px;
+      }
 
-    nav ul li a {
-      font-size: 1rem;
-      padding: 12px;
-      text-align: center;
-      background-color: #064273;
-      color: #f9d71c;
-      border-radius: 6px;
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
+      nav ul li a {
+        font-size: 1.1rem;
+        padding: 10px;
+        text-align: center;
+      }
+
 
     nav ul li a:hover,
     nav ul li a:focus {
@@ -226,7 +223,7 @@
 
     <h1>Anatomy - Urinary System</h1>
     <p class="description">
-      Welcome to the interactive urinary system website. This interactive website is fully created by Group 11. Please use the navigation to explore different features.
+      Welcome to the interactive urinary system website that fully created by Group 11. Please use the navigation to explore different features.
     </p>
 
     <!-- Team Introduction Section -->
@@ -264,7 +261,7 @@
         <div class="member-card" tabindex="0">
           <img src="teamphoto/nisa.jpg" alt="Nisa photo">
           <div class="member-info">
-            <h3>Wan Kharunnisa Binti Wan Zulkifli</h3>
+            <h3>Wan Khairunnisa Binti Wan Zulkifli</h3>
             <p>Faculty of Science</p>
           </div>
         </div>
