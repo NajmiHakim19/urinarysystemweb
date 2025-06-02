@@ -167,20 +167,27 @@
     </div>
   </div>
   <script>
-    const hydrationBtn = document.getElementById('hydration-btn');
-    const weightInput = document.getElementById('weight-input');
-    const hydrationResult = document.getElementById('hydration-result');
+  const hydrationBtn = document.getElementById('hydration-btn');
+  const weightInput = document.getElementById('weight-input');
+  const hydrationResult = document.getElementById('hydration-result');
 
-    hydrationBtn.addEventListener('click', () => {
-      const weight = parseFloat(weightInput.value);
-      if (isNaN(weight) || weight <= 0) {
-        hydrationResult.textContent = 'Please enter a valid weight.';
-        return;
-      }
-      // Simple hydration calculation: 35 ml per kg body weight
-      const waterIntake = (weight * 35) / 1000; // liters
-      hydrationResult.textContent = `You should drink approximately ${waterIntake.toFixed(2)} liters of water daily.`;
-    });
-  </script>
+  hydrationBtn.addEventListener('click', () => {
+    const weight = parseFloat(weightInput.value);
+
+    if (isNaN(weight) || weight <= 0) {
+      hydrationResult.textContent = 'Please enter a valid weight.';
+      return;
+    }
+
+    if (weight > 300) {
+      hydrationResult.textContent = 'Please input a true value below 300kg.';
+      return;
+    }
+
+    // Simple hydration calculation: 35 ml per kg body weight
+    const waterIntake = (weight * 35) / 1000; // liters
+    hydrationResult.textContent = `You should drink approximately ${waterIntake.toFixed(2)} liters of water daily.`;
+  });
+</script>
 </body>
 </html>
