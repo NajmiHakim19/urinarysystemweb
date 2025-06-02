@@ -26,7 +26,7 @@
 
     .container {
       width: 100%;
-      max-width: 700px;
+      max-width: 800px;
     }
 
     nav {
@@ -84,74 +84,126 @@
       font-size: 1.5rem;
       margin-bottom: 20px;
       color: #064273;
+      text-align: center;
     }
 
     .team-grid {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 15px;
+      flex-direction: column;
+      gap: 20px;
     }
 
     .member-card {
+      display: flex;
+      align-items: center;
       background: #ffffff;
       border-radius: 12px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      width: 150px;
       padding: 15px;
-      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      text-align: left;
+    }
+
+    .member-card:hover,
+    .member-card:focus,
+    .member-card:active {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+      outline: none;
     }
 
     .member-card img {
-      width: 100%;
-      height: 150px;
+      width: 100px;
+      height: 100px;
       object-fit: cover;
-      border-radius: 8px;
-      margin-bottom: 10px;
+      border-radius: 10px;
+      margin-right: 20px;
+      flex-shrink: 0;
     }
 
-    .member-card h3 {
-      font-size: 1rem;
-      margin: 5px 0;
+    .member-info h3 {
+      font-size: 1.1rem;
+      margin: 0 0 6px 0;
+      color: #064273;
     }
 
-    .member-card p {
-      font-size: 0.9rem;
+    .member-info p {
+      font-size: 0.95rem;
       color: #333;
     }
 
     @media (max-width: 480px) {
-      body, html {
-        padding: 10px;
-      }
-
-      nav {
-        max-width: 100%;
-        border-radius: 5%;
-      }
-
-      nav ul {
-        flex-direction: column;
-        gap: 1px;
-        padding: 5px;
-      }
-
-      nav ul li a {
-        font-size: 1.1rem;
-        padding: 10px;
-        text-align: center;
-      }
-
-      .team-grid {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .member-card {
-        width: 80%;
-      }
+    body, html {
+      padding: 10px;
     }
-  </style>
+
+    nav {
+      max-width: 100%;
+      border-radius: 8px;
+      background-color: #064273;
+    }
+
+    nav ul {
+      flex-direction: column;
+      gap: 5px;
+      padding: 10px;
+    }
+
+    nav ul li a {
+      font-size: 1rem;
+      padding: 12px;
+      text-align: center;
+      background-color: #064273;
+      color: #f9d71c;
+      border-radius: 6px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    nav ul li a:hover,
+    nav ul li a:focus {
+      background-color: #f9d71c;
+      color: #064273;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+
+    p.description {
+      font-size: 0.95rem;
+      margin-bottom: 20px;
+    }
+
+    .team-section h2 {
+      font-size: 1.3rem;
+      margin-bottom: 15px;
+    }
+
+    .team-grid {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .member-card {
+      width: 90%;
+      padding: 12px;
+    }
+
+    .member-card img {
+      height: 130px;
+    }
+
+    .member-card h3 {
+      font-size: 1rem;
+    }
+
+    .member-card p {
+      font-size: 0.85rem;
+    }
+  }
+</style>
 </head>
 <body>
   <div class="container">
@@ -176,35 +228,43 @@
     <div class="team-section">
       <h2>Meet Our Team</h2>
       <div class="team-grid">
-        <div class="member-card">
-          <img src="teamphoto/najmi.jpg" alt="Teammate 1 photo">
-          <h3>Najmi Hakim Bin Saharin Mizam</h3>
-          <!--<p>Leader</p>-->
-          <p>Faculty of Computing</p>
+        <div class="member-card" tabindex="0">
+          <img src="teamphoto/najmi.jpg" alt="Najmi photo">
+          <div class="member-info">
+            <h3>Najmi Hakim Bin Saharin Mizam</h3>
+            <p>Faculty of Computing</p>
+          </div>
         </div>
-        <div class="member-card">
-          <img src="teamphoto/default.jpg" alt="Teammate 2 photo">
-          <h3>Azry Fikri Iskandar Bin Roslan</h3>
-          <p>Faculty of Computing</p>
+        <div class="member-card" tabindex="0">
+          <img src="teamphoto/default.jpg" alt="Azry photo">
+          <div class="member-info">
+            <h3>Azry Fikri Iskandar Bin Roslan</h3>
+            <p>Faculty of Computing</p>
+          </div>
         </div>
-        <div class="member-card">
-          <img src="teamphoto/najla.jpg" alt="Teammate 3 photo">
-          <h3>Nur Najla Binti Mohd Darus</h3>
-          <p>Faculty of Science</p>
+        <div class="member-card" tabindex="0">
+          <img src="teamphoto/najla.jpg" alt="Najla photo">
+          <div class="member-info">
+            <h3>Nur Najla Binti Mohd Darus</h3>
+            <p>Faculty of Science</p>
+          </div>
         </div>
-        <div class="member-card">
-          <img src="teamphoto/default.jpg" alt="Teammate 4 photo">
-          <h3>Syamsul Haris Bin Shamsudin</h3>
-          <p>Faculty of Computing</p>
+        <div class="member-card" tabindex="0">
+          <img src="teamphoto/default.jpg" alt="Syamsul photo">
+          <div class="member-info">
+            <h3>Syamsul Haris Bin Shamsudin</h3>
+            <p>Faculty of Computing</p>
+          </div>
         </div>
-        <div class="member-card">
-          <img src="teamphoto/nisa.jpg" alt="Teammate 5 photo">
-          <h3>Wan Kharunnisa Binti Wan Zulkifli</h3>
-          <p>Faculty of Science</p>
+        <div class="member-card" tabindex="0">
+          <img src="teamphoto/nisa.jpg" alt="Nisa photo">
+          <div class="member-info">
+            <h3>Wan Kharunnisa Binti Wan Zulkifli</h3>
+            <p>Faculty of Science</p>
+          </div>
         </div>
       </div>
     </div>
-
   </div>
 </body>
 </html>
