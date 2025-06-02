@@ -75,23 +75,80 @@
       margin-bottom: 20px;
     }
 
+    /* Team Section Styles */
+    .team-section {
+      margin-top: 30px;
+    }
+
+    .team-section h2 {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      color: #064273;
+    }
+
+    .team-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .member-card {
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 150px;
+      padding: 15px;
+      text-align: center;
+    }
+
+    .member-card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
+    .member-card h3 {
+      font-size: 1rem;
+      margin: 5px 0;
+    }
+
+    .member-card p {
+      font-size: 0.9rem;
+      color: #333;
+    }
+
     @media (max-width: 480px) {
       body, html {
         padding: 10px;
       }
+
       nav {
         max-width: 100%;
         border-radius: 5%;
       }
+
       nav ul {
         flex-direction: column;
         gap: 1px;
         padding: 5px;
       }
+
       nav ul li a {
         font-size: 1.1rem;
         padding: 10px;
         text-align: center;
+      }
+
+      .team-grid {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .member-card {
+        width: 80%;
       }
     }
   </style>
@@ -109,10 +166,45 @@
         <li><a href="glossary.html">Glossary</a></li>
       </ul>
     </nav>
+
     <h1>Anatomy - Urinary System</h1>
     <p class="description">
       Welcome to the interactive urinary system website. This interactive website is fully created by Group 11. Please use the navigation to explore different features.
     </p>
+
+    <!-- Team Introduction Section -->
+    <div class="team-section">
+      <h2>Meet Our Team</h2>
+      <div class="team-grid">
+        <div class="member-card">
+          <img src="teamphoto/najmi.jpg" alt="Teammate 1 photo">
+          <h3>Najmi Hakim Bin Saharin Mizam</h3>
+          <!--<p>Leader</p>-->
+          <p>Faculty of Computing</p>
+        </div>
+        <div class="member-card">
+          <img src="teamphoto/default.jpg" alt="Teammate 2 photo">
+          <h3>Azry Fikri Iskandar Bin Roslan</h3>
+          <p>Faculty of Computing</p>
+        </div>
+        <div class="member-card">
+          <img src="teamphoto/najla.jpg" alt="Teammate 3 photo">
+          <h3>Nur Najla Binti Mohd Darus</h3>
+          <p>Faculty of Science</p>
+        </div>
+        <div class="member-card">
+          <img src="teamphoto/default.jpg" alt="Teammate 4 photo">
+          <h3>Syamsul Haris Bin Shamsudin</h3>
+          <p>Faculty of Computing</p>
+        </div>
+        <div class="member-card">
+          <img src="teamphoto/nisa.jpg" alt="Teammate 5 photo">
+          <h3>Wan Kharunnisa Binti Wan Zulkifli</h3>
+          <p>Faculty of Science</p>
+        </div>
+      </div>
+    </div>
+
   </div>
 </body>
 </html>
