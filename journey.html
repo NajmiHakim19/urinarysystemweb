@@ -2,217 +2,177 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Urine Formation Journey - Urinary System Anatomy</title>
-    <link rel="stylesheet" href="styles.css" />
-    <style>
-    /* Reset */
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Urine Formation Journey - Urinary System Anatomy</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
     * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     body,
     html {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background: #e5f0ff;
-        color: #064273;
-        user-select: text;
-        margin: flex;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #e5f0ff;
+      color: #064273;
+      user-select: text;
+      margin: 0;
     }
 
     nav {
-        width: auto;
-        max-width: 480px;
-        background-color: #064273;
-        border-radius: 8px;
-        margin: 0 auto 15px;
-        user-select: none;
+      max-width: 480px;
+      background-color: #064273;
+      border-radius: 8px;
+      margin: 0 auto 15px;
+      user-select: none;
     }
 
     nav ul {
-        list-style: none;
-        display: flex;
-        justify-content: space-around;
-        padding: 10px 0;
+      list-style: none;
+      display: flex;
+      justify-content: space-around;
+      padding: 10px 0;
     }
 
     nav ul li a {
-        color: #f9d71c;
-        text-decoration: none;
-        font-weight: 700;
-        font-size: 0.9rem;
-        padding: 6px 10px;
-        display: block;
-        transition: background-color 0.3s ease;
-        border-radius: 6px;
+      color: #f9d71c;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 6px 10px;
+      display: block;
+      transition: background-color 0.3s ease;
+      border-radius: 6px;
     }
 
     nav ul li a:hover,
     nav ul li a:focus {
-        background-color: #f9d71c;
-        color: #064273;
-        outline: none;
+      background-color: #f9d71c;
+      color: #064273;
+      outline: none;
     }
 
     h2 {
-        text-align: center;
-        color: #064273;
-        font-weight: 700;
-        margin-bottom: 15px;
+      text-align: center;
+      color: #064273;
+      font-weight: 700;
+      margin-bottom: 15px;
     }
 
     .journey-steps {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 15px;
-        font-size: 0.9rem;
-        margin: 20px auto;
-        max-width: 300px;
-    }
-
-    .journey-step-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      font-size: 0.9rem;
+      margin: 20px auto;
+      max-width: 300px;
     }
 
     .journey-step {
-        background: #ffffff;
-        border-radius: 100px;
-        padding: 15px 20px;
-        text-align: center;
-        position: relative;
-        cursor: default;
-        border: 1px solid transparent;
-        transition: border-color 0.3s ease, background-color 0.3s ease;
-        width: 100%;
+      background: #ffffff;
+      border-radius: 100px;
+      padding: 15px 20px;
+      text-align: center;
+      border: 1px solid transparent;
+      transition: 0.3s ease;
+      width: 100%;
     }
 
     .journey-step:hover,
     .journey-step.active {
-        background: #064273;
-        color: #f9d71c;
-        border-color: #f9d71c;
+      background: #064273;
+      color: #f9d71c;
+      border-color: #f9d71c;
     }
 
     .arrow {
-        display: flex;
-        justify-content: center;
-        margin: 5px 0;
+      display: flex;
+      justify-content: center;
+      margin: 5px 0;
     }
 
     .arrow svg {
-        width: 28px;
-        height: 28px;
+      width: 28px;
+      height: 28px;
     }
 
     .tooltip {
-    position: static;
-    margin-top: 0px;
-    margin-bottom: 10px; /* Add spacing at the bottom */
-    background: #064273;
-    color: #f9d71c;
-    padding: 6px 10px;
-    border-radius: 6px;
-    font-size: 0.8rem;
-    white-space: normal;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-    z-index: auto;
-    text-align: center;
+      background: #064273;
+      color: #f9d71c;
+      padding: 6px 10px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      text-align: center;
     }
 
     .tooltip.visible {
-        opacity: 1;
-        pointer-events: auto;
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    #journey-video {
+      display: none;
+      width: 100%;
+      max-width: 1000px;
+      max-height: 600px;
+      border-radius: 12px;
+      box-shadow: 0 4px 25px rgba(0, 0, 0, 0.3);
+      margin: 30px auto;
+    }
+
+    #close-video-btn {
+      display: none;
+      margin: 10px auto 30px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      cursor: pointer;
+      background-color: #f9d71c;
+      color: #064273;
+      border: none;
+      border-radius: 6px;
+      text-align: center;
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
     }
 
     @media (max-width: 480px) {
-        body,
-        html {
-            margin: 10px;
-        }
+      nav {
+        max-width: 100%;
+        border-radius: 5%;
+      }
 
-        nav {
-            max-width: 100%;
-            margin: 0;
-            border-radius: 5%;
-        }
+      nav ul {
+        flex-direction: column;
+        gap: 1px;
+        padding: 5px;
+      }
 
-        nav ul {
-            flex-direction: column;
-            gap: 1px;
-            padding: 5px;
-        }
+      nav ul li a {
+        font-size: 1.1rem;
+        padding: 10px;
+        text-align: center;
+      }
 
-        nav ul li a {
-            font-size: 1.1rem;
-            padding: 10px;
-            text-align: center;
-        }
+      .container {
+        max-width: 100%;
+        padding: 0 10px;
+      }
 
-        .container {
-            max-width: 100%;
-            padding: 0 10px;
-        }
-
-        .wrapper {
-            padding: 10px 0;
-            min-height: auto;
-        }
-
-        .journey-steps {
-            gap: 10px;
-            max-width: 90%;
-        }
-
-        .container {
-            max-width: 1500px;
-            margin: 0 auto;
-            padding: 40px;
-            text-align: center;
-        }
-
-        #journey-video {
-            width: 150%;
-            max-width: 150%; /* Allow full width on small screens */
-            max-height: 420px; /* Increased height */
-            border-radius: 10px;
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
-            margin: 20px auto;
-            display: block; /* Replace "true" with a valid display value */
-        }
-
-        #video-container {
-            max-width: 150%; /* Use full width of screen */
-            padding: 0 10px;
-        }
-
-        #close-video-btn {
-            margin-top: 10px;
-            padding: 8px 16px;
-            font-size: 1rem;
-            cursor: pointer;
-            background-color: #f9d71c;
-            color: #064273;
-            border: none;
-            border-radius: 6px;
-            transition: background-color 0.3s ease;
-        }
-
-        #close-video-btn:hover {
-            background-color: #064273;
-            color: #f9d71c;
-        }
+      .journey-steps {
+        gap: 10px;
+        max-width: 90%;
+      }
     }
-</style>
+  </style>
 </head>
-
 <body>
   <nav aria-label="Main navigation">
     <ul>
@@ -225,154 +185,120 @@
       <li><a href="glossary.html">Glossary</a></li>
     </ul>
   </nav>
+
   <div class="container">
-<div style="text-align: center;">
-  <h2>Urine Formation Journey</h2>
-  <h4 style="color: black;">Click each process for more details</h4>
-</div>
-  <div class="journey-steps" role="list">
-    <div>
-      <div class="journey-step" tabindex="0" role="listitem" aria-describedby="tooltip-filtration">
-  Filtration
-</div>
-<div class="arrow">
-  <svg width="24" height="20" fill="#064273" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    <path d="M12 16L6 10h12l-6 6z"/>
-  </svg>
-</div>
-<div class="tooltip" id="tooltip-filtration" role="tooltip">
-  Blood is filtered in the glomerulus to remove waste and excess substances.
-</div>
+    <div style="text-align: center;">
+      <h2>Urine Formation Journey</h2>
+      <h4 style="color: black;">Click each process for more details</h4>
+    </div>
 
-<div class="journey-step" tabindex="0" role="listitem" aria-describedby="tooltip-reabsorption">
-  Reabsorption
-</div>
-<div class="arrow">
-  <svg width="24" height="24" fill="#064273" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    <path d="M12 16L6 10h12l-6 6z"/>
-  </svg>
-</div>
-<div class="tooltip" id="tooltip-reabsorption" role="tooltip">
-  Useful substances like glucose and water are reabsorbed back into the blood.
-</div>
+    <div class="journey-steps" role="list">
+      <div>
+        <div class="journey-step" tabindex="0" aria-describedby="tooltip-filtration">Filtration</div>
+        <div class="arrow">
+          <svg width="24" height="20" fill="#064273" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 16L6 10h12l-6 6z" />
+          </svg>
+        </div>
+        <div class="tooltip" id="tooltip-filtration" role="tooltip">
+          Blood is filtered in the glomerulus to remove waste and excess substances.
+        </div>
 
-<div class="journey-step" tabindex="0" role="listitem" aria-describedby="tooltip-secretion">
-  Secretion
-</div>
-<div class="arrow">
-  <svg width="24" height="24" fill="#064273" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    <path d="M12 16L6 10h12l-6 6z"/>
-  </svg>
-</div>
-<div class="tooltip" id="tooltip-secretion" role="tooltip">
-  Additional waste substances are secreted into the tubules.
-</div>
+        <div class="journey-step" tabindex="0" aria-describedby="tooltip-reabsorption">Reabsorption</div>
+        <div class="arrow">
+          <svg width="24" height="24" fill="#064273" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 16L6 10h12l-6 6z" />
+          </svg>
+        </div>
+        <div class="tooltip" id="tooltip-reabsorption" role="tooltip">
+          Useful substances like glucose and water are reabsorbed back into the blood.
+        </div>
 
-<div class="step-wrapper">
-  <div class="journey-step no-arrow" tabindex="0" role="listitem" aria-describedby="tooltip-excretion">
-    Excretion
-  </div>
-  <div class="tooltip" id="tooltip-excretion" role="tooltip">
-    Final urine is excreted into the ureters and transported to the bladder.
-  </div>
-</div>
+        <div class="journey-step" tabindex="0" aria-describedby="tooltip-secretion">Secretion</div>
+        <div class="arrow">
+          <svg width="24" height="24" fill="#064273" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 16L6 10h12l-6 6z" />
+          </svg>
+        </div>
+        <div class="tooltip" id="tooltip-secretion" role="tooltip">
+          Additional waste substances are secreted into the tubules.
+        </div>
 
-  </div>
+        <div class="journey-step" tabindex="0" aria-describedby="tooltip-excretion">Excretion</div>
+        <div class="tooltip" id="tooltip-excretion" role="tooltip">
+          Final urine is excreted into the ureters and transported to the bladder.
+        </div>
+      </div>
+    </div>
 
-
-  <div id="video-container" style="max-width: 600px; margin: 20px auto; display: none; text-align: center;">
-    <video id="journey-video" controls style="max-width: 100%; max-height: 340px;">
+    <video id="journey-video" controls controlsList="nodownload novolume">
       <source src="" type="video/mp4" />
       Your browser does not support the video tag.
     </video>
-    <button id="close-video-btn" style="margin-top: 10px; padding: 6px 12px; font-size: 1rem; cursor: pointer;">
-      Close Video
-    </button>
-  </div>
+
+    <button id="close-video-btn">Close Video</button>
   </div>
 
   <script>
     (() => {
-      const journeySteps = document.querySelectorAll('.journey-step');
-      const videoContainer = document.getElementById('video-container');
-      const journeyVideo = document.getElementById('journey-video');
-      const closeVideoBtn = document.getElementById('close-video-btn');
+      const steps = document.querySelectorAll('.journey-step');
+      const video = document.getElementById('journey-video');
+      const closeBtn = document.getElementById('close-video-btn');
 
-      // Placeholder video sources for each step - to be updated when user provides links
-      const videoSources = {
+      const videos = {
         filtration: 'journeyvideo/Filtration.mp4',
         reabsorption: 'journeyvideo/Reabsorption.mp4',
         secretion: 'journeyvideo/Secretion.mp4',
         excretion: 'journeyvideo/Excretion.mp4'
       };
 
-      function showVideo(stepKey) {
-        const src = videoSources[stepKey];
-        if (!src) {
-          alert('Video link for this step is not yet provided.');
-          return;
-        }
-        journeyVideo.src = src;
-        journeyVideo.load();
-        videoContainer.style.display = 'block';
-        journeyVideo.focus();
+      function showVideo(key) {
+        const src = videos[key];
+        if (!src) return alert('Video not available.');
+        video.src = src;
+        video.load();
+        video.style.display = 'block';
+        closeBtn.style.display = 'inline-block';
+        video.focus();
       }
 
       function hideVideo() {
-        journeyVideo.pause();
-        journeyVideo.src = '';
-        videoContainer.style.display = 'none';
+        video.pause();
+        video.src = '';
+        video.style.display = 'none';
+        closeBtn.style.display = 'none';
       }
 
-      function hideAllDescriptions() {
-        document.querySelectorAll('.tooltip').forEach(desc => {
-          desc.classList.remove('visible');
-        });
+      function hideTooltips() {
+        document.querySelectorAll('.tooltip').forEach(t => t.classList.remove('visible'));
       }
 
-      journeySteps.forEach(step => {
+      steps.forEach(step => {
         step.addEventListener('click', () => {
-          const stepText = step.textContent.trim().toLowerCase();
-          // Map step text to keys in videoSources
-          let key = '';
-          if (stepText.includes('filtration')) key = 'filtration';
-          else if (stepText.includes('reabsorption')) key = 'reabsorption';
-          else if (stepText.includes('secretion')) key = 'secretion';
-          else if (stepText.includes('excretion')) key = 'excretion';
-
+          const text = step.textContent.toLowerCase();
+          const key = Object.keys(videos).find(k => text.includes(k));
           if (key) {
             showVideo(key);
-            hideAllDescriptions();
-            const desc = document.getElementById(`tooltip-${key}`);
-            if (desc) {
-              desc.classList.add('visible');
-            }
+            hideTooltips();
+            const tip = document.getElementById(`tooltip-${key}`);
+            if (tip) tip.classList.add('visible');
           }
         });
 
         step.addEventListener('mouseenter', () => {
-          const stepText = step.textContent.trim().toLowerCase();
-          let key = '';
-          if (stepText.includes('filtration')) key = 'filtration';
-          else if (stepText.includes('reabsorption')) key = 'reabsorption';
-          else if (stepText.includes('secretion')) key = 'secretion';
-          else if (stepText.includes('excretion')) key = 'excretion';
-
+          const text = step.textContent.toLowerCase();
+          const key = Object.keys(videos).find(k => text.includes(k));
           if (key) {
-            hideAllDescriptions();
-            const desc = document.getElementById(`tooltip-${key}`);
-            if (desc) {
-              desc.classList.add('visible');
-            }
+            hideTooltips();
+            const tip = document.getElementById(`tooltip-${key}`);
+            if (tip) tip.classList.add('visible');
           }
         });
 
-        step.addEventListener('mouseleave', () => {
-          hideAllDescriptions();
-        });
+        step.addEventListener('mouseleave', hideTooltips);
       });
 
-      closeVideoBtn.addEventListener('click', hideVideo);
+      closeBtn.addEventListener('click', hideVideo);
     })();
   </script>
 </body>

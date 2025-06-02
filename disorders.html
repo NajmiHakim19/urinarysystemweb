@@ -10,7 +10,8 @@
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: #e5f0ff;
       color: #064273;
-      margin: 20px;
+      margin: 0; /* Changed from 20px to 0 to remove top gap */
+      padding: 0;
       user-select: text;
     }
     nav {
@@ -18,10 +19,8 @@
       max-width: 480px;
       background-color: #064273;
       border-radius: 8px;
-      margin-bottom: 15px;
+      margin: 0 auto 15px; /* Simplified margin declaration */
       user-select: none;
-      margin-left: auto;
-      margin-right: auto;
     }
     nav ul {
       list-style: none;
@@ -82,14 +81,14 @@
       transform: translateY(-4px);
       transition: box-shadow 0.3s ease, transform 0.3s ease;
     }
-   @media (max-width: 480px) {
+    @media (max-width: 480px) {
       body, html {
-        margin: 10px;
+        margin: 0; /* Changed from 10px to 0 */
+        padding: 10px; /* Added padding instead of margin */
       }
       nav {
         max-width: 100%;
-        margin-left: 0;
-        margin-right: 0;
+        margin: 0 auto 15px; /* Simplified margin declaration */
         border-radius: 5%;
       }
       nav ul {
@@ -152,15 +151,15 @@
       <p><strong>Treatments:</strong> Exercises, medication, surgery.</p>
     </div>
   </div>
-</body>
-<script>
-  document.querySelectorAll('.disorder-card').forEach(card => {
-    card.addEventListener('click', () => {
-      // Remove floating from all cards
-      document.querySelectorAll('.disorder-card').forEach(c => c.classList.remove('floating'));
-      // Add to the clicked one
-      card.classList.add('floating');
+  <script>
+    document.querySelectorAll('.disorder-card').forEach(card => {
+      card.addEventListener('click', () => {
+        // Remove floating from all cards
+        document.querySelectorAll('.disorder-card').forEach(c => c.classList.remove('floating'));
+        // Add to the clicked one
+        card.classList.add('floating');
+      });
     });
-  });
-</script>
+  </script>
+</body>
 </html>

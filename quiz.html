@@ -10,25 +10,27 @@
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: #e5f0ff;
       color: #064273;
-      margin: 20px;
+      margin: 0; /* Changed from 20px to 0 to remove top gap */
+      padding: 0;
       user-select: text;
     }
+    
     nav {
       width: auto;
       max-width: 480px;
       background-color: #064273;
       border-radius: 8px;
-      margin-bottom: 15px;
+      margin: 0 auto 15px; /* Simplified margin declaration */
       user-select: none;
-      margin-left: auto;
-      margin-right: auto;
     }
+    
     nav ul {
       list-style: none;
       display: flex;
       justify-content: space-around;
       padding: 10px 0;
     }
+    
     nav ul li a {
       color: #f9d71c;
       text-decoration: none;
@@ -39,47 +41,56 @@
       transition: background-color 0.3s ease;
       border-radius: 6px;
     }
+    
     nav ul li a:hover,
     nav ul li a:focus {
       background-color: #f9d71c;
       color: #064273;
       outline: none;
     }
+    
     @media (max-width: 480px) {
       body, html {
         margin: 10px;
       }
+      
       nav {
         max-width: 100%;
         margin-left: 0;
         margin-right: 0;
         border-radius: 5%;
       }
+      
       nav ul {
         flex-direction: column;
         gap: 1px;
         padding: 5px;
       }
+      
       nav ul li a {
         font-size: 1.1rem;
         padding: 10px;
         text-align: center;
       }
+      
       .container {
         max-width: 100%;
         padding: 0 10px;
       }
+      
       .wrapper {
         padding: 10px 0;
         min-height: auto;
       }
     }
+    
     h2 {
       text-align: center;
       color: #064273;
       font-weight: 700;
       margin-bottom: 15px;
     }
+    
     .quiz-section {
       display: flex;
       flex-direction: column;
@@ -87,12 +98,14 @@
       max-width: 375px;
       margin: auto;
     }
+    
     /* Drag and Drop Labeling */
     .drag-drop-container {
       display: flex;
       flex-direction: column;
       gap: 10px;
     }
+    
     .diagram-labels {
       display: flex;
       flex-wrap: wrap;
@@ -100,6 +113,7 @@
       justify-content: center;
       margin-bottom: 10px;
     }
+    
     .label-item {
       background: #064273;
       border-radius: 8px;
@@ -110,9 +124,11 @@
       color: #f9d71c;
       transition: background-color 0.3s ease;
     }
+    
     .label-item:active {
       cursor: grabbing;
     }
+    
     .drop-zone {
       border: 2px dashed #064273;
       border-radius: 8px;
@@ -125,22 +141,26 @@
       user-select: none;
       transition: background-color 0.3s ease;
     }
+    
     .drop-zone.correct {
       background-color: #a8d5a8;
       border-color: #3a7d3a;
       color: #2f4f2f;
     }
+    
     .drop-zone.incorrect {
       background-color: #f7a8a8;
       border-color: #a33a3a;
       color: #5f2f2f;
     }
+    
     /* True or False Quiz */
     .tf-quiz {
       display: flex;
       flex-direction: column;
       gap: 12px;
     }
+    
     .tf-question {
       background: #064273;
       border-radius: 8px;
@@ -149,11 +169,13 @@
       color: #f9d71c;
       user-select: text;
     }
+    
     .tf-buttons {
       display: flex;
       gap: 10px;
       margin-top: 6px;
     }
+    
     .tf-buttons button {
       flex: 1;
       padding: 8px 0;
@@ -164,20 +186,24 @@
       transition: background-color 0.3s ease;
       user-select: none;
     }
+    
     .tf-buttons button:hover {
       background-color: #f9d71c;
       color: #064273;
     }
+    
     .tf-buttons button.correct {
       background-color: #3a7d3a;
       color: #d4f1d4;
       cursor: default;
     }
+    
     .tf-buttons button.incorrect {
       background-color: #a33a3a;
       color: #f1d4d4;
       cursor: default;
     }
+    
     /* Case Study Game */
     .case-study {
       background: #064273;
@@ -187,21 +213,25 @@
       color: #f9d71c;
       user-select: text;
     }
+    
     .case-study h3 {
       margin-bottom: 8px;
       font-weight: 700;
       color: #f9d71c;
     }
+    
     .case-study label {
       display: block;
       margin-bottom: 6px;
       cursor: pointer;
       user-select: none;
     }
+    
     .case-study input[type="radio"] {
       margin-right: 8px;
       cursor: pointer;
     }
+    
     .case-study button {
       margin-top: 10px;
       padding: 8px 12px;
@@ -214,9 +244,11 @@
       user-select: none;
       transition: background-color 0.3s ease;
     }
+    
     .case-study button:hover {
       background-color: #e6c917;
     }
+    
     .case-study .result {
       margin-top: 10px;
       font-weight: 700;
@@ -225,119 +257,113 @@
 </head>
 <body>
   <nav aria-label="Main navigation">
-  <ul>
-    <li><a href="trytest.html">Home</a></li>
-    <li><a href="diagram.html">Diagram</a></li>
-    <li><a href="journey.html">Journey</a></li>
-    <li><a href="quiz.html">Quiz</a></li>
-    <li><a href="disorders.html">Disorders</a></li>
-    <li><a href="tips.html">Tips</a></li>
-    <li><a href="glossary.html">Glossary</a></li>
-  </ul>
-</nav>
+    <ul>
+      <li><a href="trytest.html">Home</a></li>
+      <li><a href="diagram.html">Diagram</a></li>
+      <li><a href="journey.html">Journey</a></li>
+      <li><a href="quiz.html">Quiz</a></li>
+      <li><a href="disorders.html">Disorders</a></li>
+      <li><a href="tips.html">Tips</a></li>
+      <li><a href="glossary.html">Glossary</a></li>
+    </ul>
+  </nav>
+  
   <h2>Quiz &amp; Games</h2>
+  
   <div class="quiz-section">
-
     <!-- Drag and Drop Labeling -->
-     <!--TODO: PUT IMAGES FOR QUIZ DRAG AND DROP-->
     <div class="drag-drop-container" aria-label="Label the organs drag and drop game">
       <h3>Label the Organs</h3>
       <!-- Label container -->
-<div class="diagram-labels" id="label-container">
-  <div class="label-item" draggable="true" id="label-leftKidney">Left Kidney</div>
-  <div class="label-item" draggable="true" id="label-rightKidney">Right Kidney</div>
-  <div class="label-item" draggable="true" id="label-ureters">Ureters</div>
-  <div class="label-item" draggable="true" id="label-bladder">Bladder</div>
-  <div class="label-item" draggable="true" id="label-urethra">Urethra</div>
-</div>
+      <div class="diagram-labels" id="label-container">
+        <div class="label-item" draggable="true" id="label-leftKidney">Left Kidney</div>
+        <div class="label-item" draggable="true" id="label-rightKidney">Right Kidney</div>
+        <div class="label-item" draggable="true" id="label-ureters">Ureters</div>
+        <div class="label-item" draggable="true" id="label-bladder">Bladder</div>
+        <div class="label-item" draggable="true" id="label-urethra">Urethra</div>
+      </div>
 
-<!-- Drop zone container -->
-<div id="drop-zone-container">
-  <div class="drop-zone" data-part="leftKidney">Filters blood on the left side of your body</div>
-  <div class="drop-zone" data-part="rightKidney">Bean-Shaped organ that sits below the liver</div>
-  <div class="drop-zone" data-part="ureters">Tubes carrying urine from kidneys to the bladder</div>
-  <div class="drop-zone" data-part="bladder">Stores urine before it leaves the body</div>
-  <div class="drop-zone" data-part="urethra">Tube that releases urine out of the body</div>
-
- 
-</div>
-<button id="reset-drag-drop" style="margin-top: 10px;">Reset Drag and Drop</button>
-
+      <!-- Drop zone container -->
+      <div id="drop-zone-container">
+        <div class="drop-zone" data-part="leftKidney">Filters blood on the left side of your body</div>
+        <div class="drop-zone" data-part="rightKidney">Bean-Shaped organ that sits below the liver</div>
+        <div class="drop-zone" data-part="ureters">Tubes carrying urine from kidneys to the bladder</div>
+        <div class="drop-zone" data-part="bladder">Stores urine before it leaves the body</div>
+        <div class="drop-zone" data-part="urethra">Tube that releases urine out of the body</div>
+      </div>
+      
+      <button id="reset-drag-drop" style="margin-top: 10px;">Reset Drag and Drop</button>
+    </div>
 
     <!-- True or False Quiz -->
     <div class="tf-quiz" aria-label="True or False quiz about urinary system">
-  <h3>True or False</h3>
-  <div id="tf-question-container"></div>
-  <button id="next-tf-questions" style="margin-top: 10px;">Change Question</button>
-  <button id="reset-tf" style="margin-top: 10px;">Reset True/False Quiz</button>
-</div>
-
+      <h3>True or False</h3>
+      <div id="tf-question-container"></div>
+      <button id="next-tf-questions" style="margin-top: 10px;">Change Question</button>
+      <button id="reset-tf" style="margin-top: 10px;">Reset True/False Quiz</button>
+    </div>
 
     <!-- Case Study Game -->
     <div class="case-study" aria-label="Case study game to diagnose urinary system conditions">
-  <h3>Case Study Game</h3>
-  <div id="case-study-content">
-    <!-- Case study content will be injected here -->
+      <h3>Case Study Game</h3>
+      <div id="case-study-content">
+        <!-- Case study content will be injected here -->
+      </div>
+      <button id="change-case" style="margin-top:10px;">Change Case Study</button>
+      <button id="reset-case" style="margin-top:10px;">Reset Case Study</button>
+    </div>
   </div>
-  <button id="change-case" style="margin-top:10px;">Change Case Study</button>
-  <button id="reset-case" style="margin-top:10px;">Reset Case Study</button>
-</div>
 
-
-  </div>
   <script>
-  // Shuffle label items
-function shuffleLabels() {
-  const container = document.getElementById('label-container');
-  const items = Array.from(container.children);
-  const shuffled = items.sort(() => Math.random() - 0.5);
-  shuffled.forEach(item => container.appendChild(item));
-}
+    // Shuffle label items
+    function shuffleLabels() {
+      const container = document.getElementById('label-container');
+      const items = Array.from(container.children);
+      const shuffled = items.sort(() => Math.random() - 0.5);
+      shuffled.forEach(item => container.appendChild(item));
+    }
 
-// Shuffle drop zones
-function shuffleDropZones() {
-  const container = document.getElementById('drop-zone-container');
-  const items = Array.from(container.children);
-  const shuffled = items.sort(() => Math.random() - 0.5);
-  shuffled.forEach(item => container.appendChild(item));
-}
+    // Shuffle drop zones
+    function shuffleDropZones() {
+      const container = document.getElementById('drop-zone-container');
+      const items = Array.from(container.children);
+      const shuffled = items.sort(() => Math.random() - 0.5);
+      shuffled.forEach(item => container.appendChild(item));
+    }
 
+    document.getElementById('reset-drag-drop').addEventListener('click', () => {
+      dropZones.forEach(zone => {
+        const clue = getClueText(zone.dataset.part);
+        zone.textContent = clue;
+        zone.classList.remove('correct', 'incorrect');
+      });
 
-document.getElementById('reset-drag-drop').addEventListener('click', () => {
-  dropZones.forEach(zone => {
-    const clue = getClueText(zone.dataset.part);
-    zone.textContent = clue;
-    zone.classList.remove('correct', 'incorrect');
-  });
+      labels.forEach(label => {
+        label.setAttribute('draggable', 'true');
+        label.style.opacity = '1';
+        label.style.cursor = 'grab';
+        label.style.display = 'inline-block';
+        label.classList.remove('hidden');
+      });
 
-  labels.forEach(label => {
-    label.setAttribute('draggable', 'true');
-    label.style.opacity = '1';
-    label.style.cursor = 'grab';
-    label.style.display = 'inline-block';
-    label.classList.remove('hidden');
-  });
+      draggedLabel = null;
 
-  draggedLabel = null;
+      // Shuffle!
+      shuffleLabels();
+      shuffleDropZones();
+    });
 
-  // 🌀 Shuffle!
-  shuffleLabels();
-  shuffleDropZones();
-});
-
-
-
-// Helper function to get original clue text
-function getClueText(part) {
-  switch (part) {
-    case 'leftKidney': return 'Filters blood on the left side of your body';
-    case 'rightKidney': return 'Bean-Shaped organ that sits below the liver';
-    case 'ureters': return 'Tubes carrying urine from kidneys to the bladder';
-    case 'bladder': return 'Stores urine before it leaves the body';
-    case 'urethra': return 'Tube that releases urine out of the body';
-    default: return '';
-  }
-}
+    // Helper function to get original clue text
+    function getClueText(part) {
+      switch (part) {
+        case 'leftKidney': return 'Filters blood on the left side of your body';
+        case 'rightKidney': return 'Bean-Shaped organ that sits below the liver';
+        case 'ureters': return 'Tubes carrying urine from kidneys to the bladder';
+        case 'bladder': return 'Stores urine before it leaves the body';
+        case 'urethra': return 'Tube that releases urine out of the body';
+        default: return '';
+      }
+    }
 
     // Drag and Drop Labeling Game
     const labels = document.querySelectorAll('.label-item');
@@ -363,23 +389,16 @@ function getClueText(part) {
     }
 
     // Reset True/False Quiz
-  document.getElementById('reset-tf').addEventListener('click', () => {
-  const tfQuestions = document.querySelectorAll('.tf-quiz .tf-buttons');
-  tfQuestions.forEach(group => {
-    const buttons = group.querySelectorAll('button');
-    buttons.forEach(btn => {
-      btn.disabled = false;
-      btn.classList.remove('correct', 'incorrect');
+    document.getElementById('reset-tf').addEventListener('click', () => {
+      const tfQuestions = document.querySelectorAll('.tf-quiz .tf-buttons');
+      tfQuestions.forEach(group => {
+        const buttons = group.querySelectorAll('button');
+        buttons.forEach(btn => {
+          btn.disabled = false;
+          btn.classList.remove('correct', 'incorrect');
+        });
+      });
     });
-  });
-});
-
-// Reset Case Study Game
-document.getElementById('reset-case').addEventListener('click', () => {
-  caseForm.reset();
-  caseResult.textContent = '';
-});
-
 
     function dragOver(e) {
       e.preventDefault();
@@ -447,167 +466,165 @@ document.getElementById('reset-case').addEventListener('click', () => {
 
     // True or False Quiz
     // All TF questions (sets of two)
-const tfQuestionSets = [
-  [
-    { text: 'The kidneys filter about 50 gallons of blood per day.', answer: 'true' },
-    { text: 'The urethra carries urine from the kidneys to the bladder.', answer: 'false' }
-  ],
-  [
-    { text: 'Urine is stored in the bladder.', answer: 'true' },
-    { text: 'The ureters carry urine from the bladder to the outside of the body.', answer: 'false' }
-  ],
-  [
-    { text: 'Each kidney has around one million nephrons.', answer: 'true' },
-    { text: 'The bladder produces urine.', answer: 'false' }
-  ]
-];
+    const tfQuestionSets = [
+      [
+        { text: 'The kidneys filter about 50 gallons of blood per day.', answer: 'true' },
+        { text: 'The urethra carries urine from the kidneys to the bladder.', answer: 'false' }
+      ],
+      [
+        { text: 'Urine is stored in the bladder.', answer: 'true' },
+        { text: 'The ureters carry urine from the bladder to the outside of the body.', answer: 'false' }
+      ],
+      [
+        { text: 'Each kidney has around one million nephrons.', answer: 'true' },
+        { text: 'The bladder produces urine.', answer: 'false' }
+      ]
+    ];
 
-let currentSetIndex = 0;
-const tfContainer = document.getElementById('tf-question-container');
+    let currentSetIndex = 0;
+    const tfContainer = document.getElementById('tf-question-container');
 
-// Render TF questions
-function renderTFQuestions() {
-  tfContainer.innerHTML = ''; // Clear previous
-  const set = tfQuestionSets[currentSetIndex];
-  set.forEach((q, idx) => {
-    const questionDiv = document.createElement('div');
-    questionDiv.className = 'tf-question';
-    questionDiv.dataset.answer = q.answer;
-    questionDiv.tabIndex = 0;
-    questionDiv.textContent = q.text;
+    // Render TF questions
+    function renderTFQuestions() {
+      tfContainer.innerHTML = ''; // Clear previous
+      const set = tfQuestionSets[currentSetIndex];
+      
+      set.forEach((q, idx) => {
+        const questionDiv = document.createElement('div');
+        questionDiv.className = 'tf-question';
+        questionDiv.dataset.answer = q.answer;
+        questionDiv.tabIndex = 0;
+        questionDiv.textContent = q.text;
 
-    const buttonContainer = document.createElement('div');
-    buttonContainer.className = 'tf-buttons';
+        const buttonContainer = document.createElement('div');
+        buttonContainer.className = 'tf-buttons';
 
-    ['true', 'false'].forEach(val => {
-      const btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'tf-btn';
-      btn.dataset.value = val;
-      btn.textContent = val.charAt(0).toUpperCase() + val.slice(1);
-      btn.setAttribute('aria-label', val);
-      btn.addEventListener('click', () => {
-        const correctAnswer = questionDiv.dataset.answer;
-        const userAnswer = btn.dataset.value;
-        const buttons = buttonContainer.querySelectorAll('button');
-        buttons.forEach(b => {
-          b.disabled = true;
-          b.classList.remove('correct', 'incorrect');
+        ['true', 'false'].forEach(val => {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'tf-btn';
+          btn.dataset.value = val;
+          btn.textContent = val.charAt(0).toUpperCase() + val.slice(1);
+          btn.setAttribute('aria-label', val);
+          btn.addEventListener('click', () => {
+            const correctAnswer = questionDiv.dataset.answer;
+            const userAnswer = btn.dataset.value;
+            const buttons = buttonContainer.querySelectorAll('button');
+            
+            buttons.forEach(b => {
+              b.disabled = true;
+              b.classList.remove('correct', 'incorrect');
+            });
+            
+            if (userAnswer === correctAnswer) {
+              btn.classList.add('correct');
+            } else {
+              btn.classList.add('incorrect');
+            }
+          });
+          
+          buttonContainer.appendChild(btn);
         });
-        if (userAnswer === correctAnswer) {
-          btn.classList.add('correct');
-        } else {
-          btn.classList.add('incorrect');
-        }
+
+        tfContainer.appendChild(questionDiv);
+        tfContainer.appendChild(buttonContainer);
       });
-      buttonContainer.appendChild(btn);
+    }
+
+    // Change question set
+    document.getElementById('next-tf-questions').addEventListener('click', () => {
+      currentSetIndex = (currentSetIndex + 1) % tfQuestionSets.length;
+      renderTFQuestions();
     });
 
-    tfContainer.appendChild(questionDiv);
-    tfContainer.appendChild(buttonContainer);
-  });
-}
+    // Reset TF
+    document.getElementById('reset-tf').addEventListener('click', () => {
+      renderTFQuestions(); // Just re-render the current set
+    });
 
-// Change question set
-document.getElementById('next-tf-questions').addEventListener('click', () => {
-  currentSetIndex = (currentSetIndex + 1) % tfQuestionSets.length;
-  renderTFQuestions();
-});
+    // Initial render
+    renderTFQuestions();
 
-// Reset TF
-document.getElementById('reset-tf').addEventListener('click', () => {
-  renderTFQuestions(); // Just re-render the current set
-});
+    // Case Study Game Data
+    const caseStudies = [
+      {
+        symptoms: 'Frequent painful urination, cloudy urine, and lower abdominal pain.',
+        options: [
+          { value: 'UTI', label: 'Urinary Tract Infection (UTI)', feedback: '✅ Correct! The symptoms indicate a Urinary Tract Infection.' },
+          { value: 'Kidney Stone', label: 'Kidney Stone', feedback: '❌ Not quite. The symptoms are more typical of a UTI.' },
+          { value: 'Other', label: 'Other', feedback: '⚠️ Please consult a healthcare professional for an accurate diagnosis.' }
+        ],
+        correct: 'UTI'
+      },
+      {
+        symptoms: 'Severe side pain, nausea, and blood in urine.',
+        options: [
+          { value: 'Kidney Stone', label: 'Kidney Stone', feedback: '✅ Correct! These are signs of a kidney stone.' },
+          { value: 'UTI', label: 'Urinary Tract Infection (UTI)', feedback: '❌ This is more characteristic of a kidney stone.' },
+          { value: 'Other', label: 'Other', feedback: '⚠️ More information is needed, but kidney stone is likely.' }
+        ],
+        correct: 'Kidney Stone'
+      },
+      {
+        symptoms: 'Swelling in legs, fatigue, and foamy urine.',
+        options: [
+          { value: 'Kidney Failure', label: 'Kidney Failure', feedback: '✅ Correct! These symptoms align with kidney failure.' },
+          { value: 'UTI', label: 'Urinary Tract Infection (UTI)', feedback: '❌ These are not typical UTI symptoms.' },
+          { value: 'Other', label: 'Other', feedback: '⚠️ These symptoms suggest serious kidney problems.' }
+        ],
+        correct: 'Kidney Failure'
+      }
+    ];
 
-// Initial render
-renderTFQuestions();
+    let currentCaseIndex = 0;
+    const caseContainer = document.getElementById('case-study-content');
 
+    // Render Case Study
+    function renderCaseStudy() {
+      const caseStudy = caseStudies[currentCaseIndex];
+      caseContainer.innerHTML = `
+        <div class="case-wrapper">
+          <p><strong>Patient Symptoms:</strong> ${caseStudy.symptoms}</p>
+          <form id="case-study-form">
+            ${caseStudy.options.map(opt => `
+              <label>
+                <input type="radio" name="diagnosis" value="${opt.value}" required />
+                ${opt.label}
+              </label><br/>
+            `).join('')}
+            <button type="submit">Submit Diagnosis</button>
+          </form>
+          <div class="result" aria-live="polite" aria-atomic="true"></div>
+        </div>
+      `;
 
-    // Case Study Game
-  // Case Study Game Data
-const caseStudies = [
-  {
-    symptoms: 'Frequent painful urination, cloudy urine, and lower abdominal pain.',
-    options: [
-      { value: 'UTI', label: 'Urinary Tract Infection (UTI)', feedback: '✅ Correct! The symptoms indicate a Urinary Tract Infection.' },
-      { value: 'Kidney Stone', label: 'Kidney Stone', feedback: '❌ Not quite. The symptoms are more typical of a UTI.' },
-      { value: 'Other', label: 'Other', feedback: '⚠️ Please consult a healthcare professional for an accurate diagnosis.' }
-    ],
-    correct: 'UTI'
-  },
-  {
-    symptoms: 'Severe side pain, nausea, and blood in urine.',
-    options: [
-      { value: 'Kidney Stone', label: 'Kidney Stone', feedback: '✅ Correct! These are signs of a kidney stone.' },
-      { value: 'UTI', label: 'Urinary Tract Infection (UTI)', feedback: '❌ This is more characteristic of a kidney stone.' },
-      { value: 'Other', label: 'Other', feedback: '⚠️ More information is needed, but kidney stone is likely.' }
-    ],
-    correct: 'Kidney Stone'
-  },
-  {
-    symptoms: 'Swelling in legs, fatigue, and foamy urine.',
-    options: [
-      { value: 'Kidney Failure', label: 'Kidney Failure', feedback: '✅ Correct! These symptoms align with kidney failure.' },
-      { value: 'UTI', label: 'Urinary Tract Infection (UTI)', feedback: '❌ These are not typical UTI symptoms.' },
-      { value: 'Other', label: 'Other', feedback: '⚠️ These symptoms suggest serious kidney problems.' }
-    ],
-    correct: 'Kidney Failure'
-  }
-];
+      const form = document.getElementById('case-study-form');
+      const result = caseContainer.querySelector('.result');
 
-let currentCaseIndex = 0;
-const caseContainer = document.getElementById('case-study-content');
+      form.addEventListener('submit', e => {
+        e.preventDefault();
+        const data = new FormData(form);
+        const answer = data.get('diagnosis');
+        const feedback = caseStudy.options.find(opt => opt.value === answer).feedback;
+        result.textContent = feedback;
+      });
+    }
 
-// Render Case Study
-function renderCaseStudy() {
-  const caseStudy = caseStudies[currentCaseIndex];
-  caseContainer.innerHTML = `
-  <div class="case-wrapper">
-    <p><strong>Patient Symptoms:</strong> ${caseStudy.symptoms}</p>
-    <form id="case-study-form">
-      ${caseStudy.options.map(opt => `
-        <label>
-          <input type="radio" name="diagnosis" value="${opt.value}" required />
-          ${opt.label}
-        </label><br/>
-      `).join('')}
-      <button type="submit">Submit Diagnosis</button>
-    </form>
-    <div class="result" aria-live="polite" aria-atomic="true"></div>
-  </div>
-`;
+    // Change Case Study
+    document.getElementById('change-case').addEventListener('click', () => {
+      currentCaseIndex = (currentCaseIndex + 1) % caseStudies.length;
+      renderCaseStudy();
+    });
 
+    // Reset Case Study
+    document.getElementById('reset-case').addEventListener('click', () => {
+      renderCaseStudy(); // Re-render current
+    });
 
-  const form = document.getElementById('case-study-form');
-  const result = caseContainer.querySelector('.result');
-
-  form.addEventListener('submit', e => {
-    e.preventDefault();
-    const data = new FormData(form);
-    const answer = data.get('diagnosis');
-    const feedback = caseStudy.options.find(opt => opt.value === answer).feedback;
-    result.textContent = feedback;
-  });
-}
-
-// Change Case Study
-document.getElementById('change-case').addEventListener('click', () => {
-  currentCaseIndex = (currentCaseIndex + 1) % caseStudies.length;
-  renderCaseStudy();
-});
-
-// Reset Case Study
-document.getElementById('reset-case').addEventListener('click', () => {
-  renderCaseStudy(); // Re-render current
-});
-
-// Initial render
-renderCaseStudy();
-shuffleLabels();
-shuffleDropZones();
-
-
-
+    // Initial render
+    renderCaseStudy();
+    shuffleLabels();
+    shuffleDropZones();
   </script>
 </body>
 </html>
