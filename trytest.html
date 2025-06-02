@@ -89,20 +89,23 @@
 
     .team-grid {
       display: flex;
-      flex-direction: column;
-      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center; /* Center horizontally */
+      gap: 15px;
     }
 
     .member-card {
-      display: flex;
-      align-items: center;
       background: #ffffff;
       border-radius: 12px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 300px; /* Adjusted width for cleaner layout */
       padding: 15px;
+      text-align: left;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       cursor: pointer;
-      text-align: left;
+      display: flex;
+      align-items: center;
+      gap: 15px;
     }
 
     .member-card:hover,
@@ -187,21 +190,23 @@
     }
 
     .member-card {
-      width: 90%;
-      padding: 12px;
-    }
+    width: 95%; /* Adjusted card width on mobile */
+    flex-direction: row; /* Keep horizontal layout */
+    padding: 12px;
+  }
 
-    .member-card img {
-      height: 130px;
-    }
+  .member-card img {
+    height: 100px; /* Resize image for mobile */
+    width: 100px;
+  }
 
-    .member-card h3 {
-      font-size: 1rem;
-    }
+  .member-card h3 {
+    font-size: 1rem;
+  }
 
-    .member-card p {
-      font-size: 0.85rem;
-    }
+  .member-card p {
+    font-size: 0.85rem;
+  }
   }
 </style>
 </head>
